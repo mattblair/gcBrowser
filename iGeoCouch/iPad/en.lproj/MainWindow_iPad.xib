@@ -47,6 +47,7 @@
 				<string key="NSFrameSize">{768, 1024}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
+				<reference key="NSNextKeyView"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
 					<bytes key="NSRGB">MSAxIDEAA</bytes>
@@ -133,7 +134,7 @@
 						<int key="objectID">6</int>
 						<reference key="object" ref="250404236"/>
 						<reference key="parent" ref="0"/>
-						<string key="objectName">I Geo Couch App Delegate i Pad</string>
+						<string key="objectName">gcBrowser App Delegate i Pad</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">12</int>

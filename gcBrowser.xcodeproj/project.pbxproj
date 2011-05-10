@@ -80,7 +80,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C92B3F5E1379815900FEF1A4 /* PointDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; name = PointDetailTableViewController.h; path = Classes/PointDetailTableViewController.h; sourceTree = "<group>"; };
+		C92B3F5E1379815900FEF1A4 /* PointDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PointDetailTableViewController.h; path = Classes/PointDetailTableViewController.h; sourceTree = "<group>"; };
 		C92B3F5F1379815900FEF1A4 /* PointDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PointDetailTableViewController.m; path = Classes/PointDetailTableViewController.m; sourceTree = "<group>"; };
 		C92B3F601379815900FEF1A4 /* PointDetailTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PointDetailTableViewController.xib; path = Classes/PointDetailTableViewController.xib; sourceTree = "<group>"; };
 		C95CBB5E136F453300C49BF2 /* gcBrowserδ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "gcBrowserδ.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -641,6 +641,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PRODUCT_NAME = "gcBrowserβ";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -695,6 +696,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PRODUCT_NAME = gcBrowser;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -751,6 +753,8 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				PRODUCT_NAME = "gcBrowserδ";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -769,6 +773,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PRODUCT_NAME = gcBrowser;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -792,7 +797,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUILD_SPECIFIC_BUNDLE_ID = com.elsewiseapps.gcbrowser.release;
+				BUILD_SPECIFIC_BUNDLE_ID = com.elsewiseapps.gcbrowser;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iGeoCouch/gcBrowser-Prefix.pch";
