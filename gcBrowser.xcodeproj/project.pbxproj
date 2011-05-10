@@ -13,7 +13,6 @@
 		C95CBB69136F453300C49BF2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C95CBB68136F453300C49BF2 /* CoreData.framework */; };
 		C95CBB6F136F453300C49BF2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C95CBB6D136F453300C49BF2 /* InfoPlist.strings */; };
 		C95CBB72136F453300C49BF2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C95CBB71136F453300C49BF2 /* main.m */; };
-		C95CBB78136F453300C49BF2 /* gcBrowser.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C95CBB76136F453300C49BF2 /* gcBrowser.xcdatamodeld */; };
 		C95CBB7C136F453300C49BF2 /* gcBrowserAppDelegate_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = C95CBB7B136F453300C49BF2 /* gcBrowserAppDelegate_iPhone.m */; };
 		C95CBB7F136F453300C49BF2 /* MainWindow_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = C95CBB7D136F453300C49BF2 /* MainWindow_iPhone.xib */; };
 		C95CBB83136F453300C49BF2 /* gcBrowserAppDelegate_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = C95CBB82136F453300C49BF2 /* gcBrowserAppDelegate_iPad.m */; };
@@ -22,9 +21,6 @@
 		C95CBB8E136F453300C49BF2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C95CBB64136F453300C49BF2 /* Foundation.framework */; };
 		C95CBB8F136F453300C49BF2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C95CBB66136F453300C49BF2 /* CoreGraphics.framework */; };
 		C95CBB90136F453300C49BF2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C95CBB68136F453300C49BF2 /* CoreData.framework */; };
-		C95CBB98136F453300C49BF2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C95CBB96136F453300C49BF2 /* InfoPlist.strings */; };
-		C95CBB9B136F453300C49BF2 /* gcBrowserTests.h in Resources */ = {isa = PBXBuildFile; fileRef = C95CBB9A136F453300C49BF2 /* gcBrowserTests.h */; };
-		C95CBB9D136F453300C49BF2 /* gcBrowserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C95CBB9C136F453300C49BF2 /* gcBrowserTests.m */; };
 		C95CBBA8136F456200C49BF2 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C95CBBA7136F456200C49BF2 /* MapViewController.m */; };
 		C95CBBAC136F458E00C49BF2 /* MapViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = C95CBBAA136F458E00C49BF2 /* MapViewController_iPhone.m */; };
 		C95CBBAD136F458E00C49BF2 /* MapViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = C95CBBAB136F458E00C49BF2 /* MapViewController_iPhone.xib */; };
@@ -60,6 +56,11 @@
 		C997D7CA13704C19005D042F /* 56-cloud@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C997D7C213704C19005D042F /* 56-cloud@2x.png */; };
 		C997D7CB13704C19005D042F /* 74-location.png in Resources */ = {isa = PBXBuildFile; fileRef = C997D7C313704C19005D042F /* 74-location.png */; };
 		C997D7CC13704C19005D042F /* 74-location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C997D7C413704C19005D042F /* 74-location@2x.png */; };
+		C9F8F44D1378F8980071238F /* gcBrowserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F8F44C1378F8980071238F /* gcBrowserTests.m */; };
+		C9F8F4501378F8BA0071238F /* gcBrowserTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C9F8F44E1378F8BA0071238F /* gcBrowserTests-Info.plist */; };
+		C9F8F4511378F8CD0071238F /* gcBrowserTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C9F8F44E1378F8BA0071238F /* gcBrowserTests-Info.plist */; };
+		C9F8F4581378F9330071238F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C9F8F4561378F9330071238F /* InfoPlist.strings */; };
+		C9F8F45B1378F97E0071238F /* gcBrowser.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C9F8F4591378F97E0071238F /* gcBrowser.xcdatamodeld */; };
 		C9FE467D1370A4C700025503 /* CouchSources.plist in Resources */ = {isa = PBXBuildFile; fileRef = C9FE467C1370A4C700025503 /* CouchSources.plist */; };
 		C9FE46821370B49400025503 /* CouchListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FE46801370B49400025503 /* CouchListViewController.m */; };
 		C9FE46831370B49400025503 /* CouchListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9FE46811370B49400025503 /* CouchListViewController.xib */; };
@@ -87,18 +88,12 @@
 		C95CBB70136F453300C49BF2 /* gcBrowser-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = "gcBrowser-Prefix.pch"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		C95CBB71136F453300C49BF2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = main.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		C95CBB73136F453300C49BF2 /* gcBrowserAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = gcBrowserAppDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		C95CBB77136F453300C49BF2 /* iGeoCouch.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iGeoCouch.xcdatamodel; sourceTree = "<group>"; };
 		C95CBB7A136F453300C49BF2 /* gcBrowserAppDelegate_iPhone.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = gcBrowserAppDelegate_iPhone.h; path = iPhone/gcBrowserAppDelegate_iPhone.h; sourceTree = "<group>"; };
 		C95CBB7B136F453300C49BF2 /* gcBrowserAppDelegate_iPhone.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = gcBrowserAppDelegate_iPhone.m; path = iPhone/gcBrowserAppDelegate_iPhone.m; sourceTree = "<group>"; };
 		C95CBB7E136F453300C49BF2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = iPhone/en.lproj/MainWindow_iPhone.xib; sourceTree = "<group>"; };
 		C95CBB82136F453300C49BF2 /* gcBrowserAppDelegate_iPad.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = gcBrowserAppDelegate_iPad.m; path = iPad/gcBrowserAppDelegate_iPad.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		C95CBB85136F453300C49BF2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = iPad/en.lproj/MainWindow_iPad.xib; sourceTree = "<group>"; };
 		C95CBB8C136F453300C49BF2 /* gcBrowserTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = gcBrowserTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C95CBB95136F453300C49BF2 /* gcBrowserTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "gcBrowserTests-Info.plist"; sourceTree = "<group>"; };
-		C95CBB97136F453300C49BF2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		C95CBB99136F453300C49BF2 /* gcBrowserTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = "gcBrowserTests-Prefix.pch"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		C95CBB9A136F453300C49BF2 /* gcBrowserTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = gcBrowserTests.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		C95CBB9C136F453300C49BF2 /* gcBrowserTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = gcBrowserTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		C95CBBA6136F456200C49BF2 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = MapViewController.h; path = Classes/MapViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		C95CBBA7136F456200C49BF2 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapViewController.m; path = Classes/MapViewController.m; sourceTree = "<group>"; };
 		C95CBBA9136F458E00C49BF2 /* MapViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = MapViewController_iPhone.h; path = iPhone/MapViewController_iPhone.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -158,6 +153,12 @@
 		C997D7C213704C19005D042F /* 56-cloud@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "56-cloud@2x.png"; sourceTree = "<group>"; };
 		C997D7C313704C19005D042F /* 74-location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "74-location.png"; sourceTree = "<group>"; };
 		C997D7C413704C19005D042F /* 74-location@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "74-location@2x.png"; sourceTree = "<group>"; };
+		C9F8F44B1378F8980071238F /* gcBrowserTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gcBrowserTests.h; path = gcBrowserTests/gcBrowserTests.h; sourceTree = SOURCE_ROOT; };
+		C9F8F44C1378F8980071238F /* gcBrowserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = gcBrowserTests.m; path = gcBrowserTests/gcBrowserTests.m; sourceTree = SOURCE_ROOT; };
+		C9F8F44E1378F8BA0071238F /* gcBrowserTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "gcBrowserTests-Info.plist"; path = "gcBrowserTests/gcBrowserTests-Info.plist"; sourceTree = SOURCE_ROOT; };
+		C9F8F44F1378F8BA0071238F /* gcBrowserTests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "gcBrowserTests-Prefix.pch"; path = "gcBrowserTests/gcBrowserTests-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		C9F8F4571378F9330071238F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = gcBrowserTests/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
+		C9F8F45A1378F97E0071238F /* iGeoCouch.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iGeoCouch.xcdatamodel; sourceTree = "<group>"; };
 		C9FE467C1370A4C700025503 /* CouchSources.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CouchSources.plist; sourceTree = "<group>"; };
 		C9FE467F1370B49400025503 /* CouchListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = CouchListViewController.h; path = Classes/CouchListViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		C9FE46801370B49400025503 /* CouchListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = CouchListViewController.m; path = Classes/CouchListViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -202,7 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				C95CBB6A136F453300C49BF2 /* gcBrowser */,
-				C95CBB93136F453300C49BF2 /* iGeoCouchTests */,
+				C95CBB93136F453300C49BF2 /* gcBrowserTests */,
 				C95CBB61136F453300C49BF2 /* Frameworks */,
 				C95CBB5F136F453300C49BF2 /* Products */,
 			);
@@ -239,7 +240,7 @@
 			children = (
 				C95CBB73136F453300C49BF2 /* gcBrowserAppDelegate.h */,
 				C996FCEC1378DCC000C2138C /* gcBrowserAppDelegate.m */,
-				C95CBB76136F453300C49BF2 /* gcBrowser.xcdatamodeld */,
+				C9F8F4591378F97E0071238F /* gcBrowser.xcdatamodeld */,
 				C95CBBB7136F47CC00C49BF2 /* Classes */,
 				C95CBB79136F453300C49BF2 /* iPhone */,
 				C95CBB80136F453300C49BF2 /* iPad */,
@@ -288,22 +289,23 @@
 			name = iPad;
 			sourceTree = "<group>";
 		};
-		C95CBB93136F453300C49BF2 /* iGeoCouchTests */ = {
+		C95CBB93136F453300C49BF2 /* gcBrowserTests */ = {
 			isa = PBXGroup;
 			children = (
-				C95CBB9A136F453300C49BF2 /* gcBrowserTests.h */,
-				C95CBB9C136F453300C49BF2 /* gcBrowserTests.m */,
+				C9F8F44B1378F8980071238F /* gcBrowserTests.h */,
+				C9F8F44C1378F8980071238F /* gcBrowserTests.m */,
 				C95CBB94136F453300C49BF2 /* Supporting Files */,
 			);
+			name = gcBrowserTests;
 			path = iGeoCouchTests;
 			sourceTree = "<group>";
 		};
 		C95CBB94136F453300C49BF2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				C95CBB95136F453300C49BF2 /* gcBrowserTests-Info.plist */,
-				C95CBB96136F453300C49BF2 /* InfoPlist.strings */,
-				C95CBB99136F453300C49BF2 /* gcBrowserTests-Prefix.pch */,
+				C9F8F4561378F9330071238F /* InfoPlist.strings */,
+				C9F8F44E1378F8BA0071238F /* gcBrowserTests-Info.plist */,
+				C9F8F44F1378F8BA0071238F /* gcBrowserTests-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -505,8 +507,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C95CBB98136F453300C49BF2 /* InfoPlist.strings in Resources */,
-				C95CBB9B136F453300C49BF2 /* gcBrowserTests.h in Resources */,
+				C9F8F4501378F8BA0071238F /* gcBrowserTests-Info.plist in Resources */,
+				C9F8F4511378F8CD0071238F /* gcBrowserTests-Info.plist in Resources */,
+				C9F8F4581378F9330071238F /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -534,7 +537,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C95CBB72136F453300C49BF2 /* main.m in Sources */,
-				C95CBB78136F453300C49BF2 /* gcBrowser.xcdatamodeld in Sources */,
 				C95CBB7C136F453300C49BF2 /* gcBrowserAppDelegate_iPhone.m in Sources */,
 				C95CBB83136F453300C49BF2 /* gcBrowserAppDelegate_iPad.m in Sources */,
 				C95CBBA8136F456200C49BF2 /* MapViewController.m in Sources */,
@@ -558,6 +560,7 @@
 				C9FE46821370B49400025503 /* CouchListViewController.m in Sources */,
 				C9FE46861370C31F00025503 /* gcBrowserConstants.m in Sources */,
 				C996FCED1378DCC000C2138C /* gcBrowserAppDelegate.m in Sources */,
+				C9F8F45B1378F97E0071238F /* gcBrowser.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -565,7 +568,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C95CBB9D136F453300C49BF2 /* gcBrowserTests.m in Sources */,
+				C9F8F44D1378F8980071238F /* gcBrowserTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -604,10 +607,10 @@
 			name = MainWindow_iPad.xib;
 			sourceTree = "<group>";
 		};
-		C95CBB96136F453300C49BF2 /* InfoPlist.strings */ = {
+		C9F8F4561378F9330071238F /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				C95CBB97136F453300C49BF2 /* en */,
+				C9F8F4571378F9330071238F /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -873,14 +876,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		C95CBB76136F453300C49BF2 /* gcBrowser.xcdatamodeld */ = {
+		C9F8F4591378F97E0071238F /* gcBrowser.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				C95CBB77136F453300C49BF2 /* iGeoCouch.xcdatamodel */,
+				C9F8F45A1378F97E0071238F /* iGeoCouch.xcdatamodel */,
 			);
-			currentVersion = C95CBB77136F453300C49BF2 /* iGeoCouch.xcdatamodel */;
-			name = gcBrowser.xcdatamodeld;
-			path = iGeoCouch.xcdatamodeld;
+			currentVersion = C9F8F45A1378F97E0071238F /* iGeoCouch.xcdatamodel */;
+			path = gcBrowser.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
