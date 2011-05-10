@@ -7,6 +7,8 @@
 //
 
 #import "MapViewController_iPhone.h"
+#import "GeoCouchAnnotation.h"
+#import "PointDetailTableViewController.h"
 
 
 @implementation MapViewController_iPhone
@@ -151,6 +153,35 @@
     
     [self dismissModalViewControllerAnimated:YES];
     
+}
+
+#pragma mark - MapView Delegate
+
+// overrides super
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
+	
+	// don't need to call super
+	
+	// see PDXTrees for an example of using annotation to request full object from Core Data
+	// then setting that object for display in a view Controller. 
+	
+	// get access to the original annotation
+	
+	GeoCouchAnnotation *selectedPoint = view.annotation;
+	NSLog(@"The ID of the selected point is: %@", [selectedPoint pointID]);
+	
+    
+    // class-check to guard against random error where pointID is returning a random chunk of memory
+    if ([[selectedPoint pointID] isKindOfClass:[NSString class]]) {
+        PointDetailTableViewController *pointVC = [[PointDetailTableViewController alloc] initWithNibName:@"PointDetailTableViewController" bundle:nil];
+        
+        pointVC.theDocID = [selectedPoint pointID];
+        
+        [self.navigationController pushViewController:pointVC animated:YES];
+        
+        [pointVC release];
+    }
+	
 }
 
 

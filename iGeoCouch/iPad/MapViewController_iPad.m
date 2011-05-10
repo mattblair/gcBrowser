@@ -8,11 +8,13 @@
 
 #import "MapViewController_iPad.h"
 #import "CouchListViewController.h"
+#import "GeoCouchAnnotation.h"
+#import "PointDetailTableViewController.h"
 
 
 @implementation MapViewController_iPad
 
-@synthesize couchListPVC;
+@synthesize couchListPVC, mapCalloutPVC;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -27,6 +29,7 @@
 - (void)dealloc
 {
     [couchListPVC release];
+    [mapCalloutPVC release];
     
     [super dealloc];
 }
@@ -54,7 +57,7 @@
     // e.g. self.myOutlet = nil;
     
     self.couchListPVC = nil;
-    
+    self.mapCalloutPVC = nil;
     
 }
 
@@ -124,6 +127,153 @@
     [self.couchListPVC dismissPopoverAnimated:YES];
     
 }
+
+
+#pragma mark - MapView Delegate
+
+
+// overriding here to omit callout and right accessory
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
+{
+    // If it's the user location, just return nil.
+    if ([annotation isKindOfClass:[MKUserLocation class]])
+        return nil;
+	
+	// Try to dequeue an existing pin view first.
+	MKPinAnnotationView* pinView = (MKPinAnnotationView*)[mapView
+														  dequeueReusableAnnotationViewWithIdentifier:@"CustomPinAnnotationView"];
+	
+	if (!pinView)
+	{
+		// If an existing pin view was not available, create one.
+		pinView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation
+												   reuseIdentifier:@"CustomPinAnnotationView"] 
+				   autorelease];
+		pinView.pinColor = MKPinAnnotationColorRed;
+		pinView.animatesDrop = YES;
+
+	}
+	
+	return pinView;
+	
+}
+
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
+    
+    // show popover here instead?
+    NSLog(@"Annotation selected: %@", [view.annotation title]);
+    
+    if (self.mapCalloutPVC.isPopoverVisible) {
+        [self.mapCalloutPVC dismissPopoverAnimated:YES];
+        
+        // need to deselct the view so this works as a toggle without tap another annotation first
+        
+        // not working -- it's not getting deselected until another one is tapped
+        // see note in docs -- you're supposed to use map view to handle this.
+        //[view setSelected:NO animated:YES]; 
+        [self.theMapView deselectAnnotation:view.annotation animated:YES];
+    }
+    else {
+        
+        GeoCouchAnnotation *selectedPoint = view.annotation;
+        NSLog(@"The ID of the selected point is: %@", [selectedPoint pointID]);
+        
+        // class-check to guard against random error where pointID is returning a random chunk of memory
+        if ([[selectedPoint pointID] isKindOfClass:[NSString class]]) {
+            
+            if (!self.mapCalloutPVC) {
+                
+                // set it up here
+                
+                NSLog(@"Building the point popover");
+                
+                PointDetailTableViewController *pointVC = [[PointDetailTableViewController alloc] initWithNibName:@"PointDetailTableViewController" bundle:nil];
+                
+                pointVC.theDocID = [selectedPoint pointID];
+                
+                CGSize mapPopoverSize = CGSizeMake(320.0, 350.0);
+                
+                pointVC.contentSizeForViewInPopover = mapPopoverSize;
+                
+                UIPopoverController *pointPopover = [[UIPopoverController alloc] initWithContentViewController:pointVC];
+                
+                self.mapCalloutPVC = pointPopover;
+                
+                [pointVC release];
+                
+                [pointPopover release];
+                
+            }
+            
+            [self.mapCalloutPVC presentPopoverFromRect:view.bounds inView:view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+            
+        }
+        
+        
+    }
+    
+    
+}
+
+- (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
+    
+    // dismiss popover here?
+    NSLog(@"Annotation deselected: %@", [view.annotation title]);
+    
+}
+
+
+// not using callout or accessory
+
+/*
+
+// overrides super, and don't need to call it
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
+	
+    if (self.mapCalloutPVC.isPopoverVisible) {
+        [self.mapCalloutPVC dismissPopoverAnimated:YES];
+    }
+    else {
+        
+        GeoCouchAnnotation *selectedPoint = view.annotation;
+        NSLog(@"The ID of the selected point is: %@", [selectedPoint pointID]);
+        
+        // class-check to guard against random error where pointID is returning a random chunk of memory
+        if ([[selectedPoint pointID] isKindOfClass:[NSString class]]) {
+            
+            if (!self.mapCalloutPVC) {
+                
+                // set it up here
+                
+                PointDetailTableViewController *pointVC = [[PointDetailTableViewController alloc] initWithNibName:@"PointDetailTableViewController" bundle:nil];
+                
+                pointVC.theDocID = [selectedPoint pointID];
+                
+                CGSize mapPopoverSize = CGSizeMake(320.0, 350.0);
+                
+                pointVC.contentSizeForViewInPopover = mapPopoverSize;
+                
+                UIPopoverController *pointPopover = [[UIPopoverController alloc] initWithContentViewController:pointVC];
+                
+                self.mapCalloutPVC = pointPopover;
+                
+                [pointVC release];
+                
+                [pointPopover release];
+                
+            }
+            
+            // view presents it from the pin, which looks weird if you are using callouts
+            
+            [self.mapCalloutPVC presentPopoverFromRect:control.bounds inView:control permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+            
+        }
+        
+    }
+    
+}
+
+*/
 
 
 @end

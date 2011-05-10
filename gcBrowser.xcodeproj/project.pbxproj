@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C92B3F611379815900FEF1A4 /* PointDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C92B3F5F1379815900FEF1A4 /* PointDetailTableViewController.m */; };
+		C92B3F621379815900FEF1A4 /* PointDetailTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C92B3F601379815900FEF1A4 /* PointDetailTableViewController.xib */; };
 		C95CBB63136F453300C49BF2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C95CBB62136F453300C49BF2 /* UIKit.framework */; };
 		C95CBB65136F453300C49BF2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C95CBB64136F453300C49BF2 /* Foundation.framework */; };
 		C95CBB67136F453300C49BF2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C95CBB66136F453300C49BF2 /* CoreGraphics.framework */; };
@@ -78,6 +80,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C92B3F5E1379815900FEF1A4 /* PointDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; name = PointDetailTableViewController.h; path = Classes/PointDetailTableViewController.h; sourceTree = "<group>"; };
+		C92B3F5F1379815900FEF1A4 /* PointDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PointDetailTableViewController.m; path = Classes/PointDetailTableViewController.m; sourceTree = "<group>"; };
+		C92B3F601379815900FEF1A4 /* PointDetailTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PointDetailTableViewController.xib; path = Classes/PointDetailTableViewController.xib; sourceTree = "<group>"; };
 		C95CBB5E136F453300C49BF2 /* gcBrowserδ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "gcBrowserδ.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C95CBB62136F453300C49BF2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C95CBB64136F453300C49BF2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -320,6 +325,9 @@
 				C9FE467F1370B49400025503 /* CouchListViewController.h */,
 				C9FE46801370B49400025503 /* CouchListViewController.m */,
 				C9FE46811370B49400025503 /* CouchListViewController.xib */,
+				C92B3F5E1379815900FEF1A4 /* PointDetailTableViewController.h */,
+				C92B3F5F1379815900FEF1A4 /* PointDetailTableViewController.m */,
+				C92B3F601379815900FEF1A4 /* PointDetailTableViewController.xib */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -500,6 +508,7 @@
 				C997D7CC13704C19005D042F /* 74-location@2x.png in Resources */,
 				C9FE467D1370A4C700025503 /* CouchSources.plist in Resources */,
 				C9FE46831370B49400025503 /* CouchListViewController.xib in Resources */,
+				C92B3F621379815900FEF1A4 /* PointDetailTableViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -561,6 +570,7 @@
 				C9FE46861370C31F00025503 /* gcBrowserConstants.m in Sources */,
 				C996FCED1378DCC000C2138C /* gcBrowserAppDelegate.m in Sources */,
 				C9F8F45B1378F97E0071238F /* gcBrowser.xcdatamodeld in Sources */,
+				C92B3F611379815900FEF1A4 /* PointDetailTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

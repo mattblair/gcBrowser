@@ -482,7 +482,7 @@
 						
 						[theMapView addAnnotations:pointAnnotationArray]; 
 						
-                        [pointAnnotationArray release];
+                        [pointAnnotationArray release];  // causing crash on iPhone but not iPad? autorel?
                         
 					}
 					else {
@@ -599,7 +599,7 @@
 	
 }
 
-
+// override in iPad version if you don't want to use the callout
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
     // If it's the user location, just return nil.
@@ -637,8 +637,8 @@
 	
 	// show alert view with details in superclass 
     
-    // deice specific subclasses should override this to show PointDetailViewController
-	
+    // device-specific subclasses should override this to show PointDetailViewController
+	// sub-classes do not need to call super
 	
 	// see PDXTrees for an example of using annotation to request full object from Core Data
 	// then setting that object for display in a view Controller. 

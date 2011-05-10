@@ -12,10 +12,12 @@
 @interface MapViewController_iPad : MapViewController {
     
     UIPopoverController *couchListPVC;
+    UIPopoverController *mapCalloutPVC;
     
 }
 
 @property (nonatomic, retain) UIPopoverController *couchListPVC;
+@property (nonatomic, retain) UIPopoverController *mapCalloutPVC;
 
 - (IBAction)showCouchList:(id)sender;
 
