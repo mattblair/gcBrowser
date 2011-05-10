@@ -1,6 +1,6 @@
 //
 //  MapViewController.m
-//  iGeoCouch
+//  gcBrowser
 //
 //  Created by Matt Blair on 5/2/11.
 //  Copyright 2011 Elsewise LLC. All rights reserved.
@@ -11,7 +11,7 @@
 #import "Reachability.h"
 #import "NSString+SBJSON.h"
 #import "GeoCouchAnnotation.h"
-#import "iGeoCouchConstants.h"
+#import "gcBrowserConstants.h"
 
 #pragma mark - 
 #pragma mark Constants

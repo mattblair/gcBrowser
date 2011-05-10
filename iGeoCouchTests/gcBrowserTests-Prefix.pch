@@ -1,5 +1,5 @@
 //
-// Prefix header for all source files of the 'iGeoCouchTests' target in the 'iGeoCouchTests' project
+// Prefix header for all source files of the 'gcBrowserTests' target in the 'gcBrowserTests' project
 //
 
 #ifdef __OBJC__

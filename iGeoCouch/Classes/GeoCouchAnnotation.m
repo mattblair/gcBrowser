@@ -1,6 +1,6 @@
 //
 //  GeoCouchAnnotation.m
-//  iGeoCouch
+//  gcBrowser
 //
 //  Created by Matt Blair on 1/16/11.
 //  Copyright 2011 Elsewise LLC. All rights reserved.

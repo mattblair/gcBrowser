@@ -1,13 +1,13 @@
 //
 //  CouchListViewController.m
-//  iGeoCouch
+//  gcBrowser
 //
 //  Created by Matt Blair on 5/3/11.
 //  Copyright 2011 Elsewise LLC. All rights reserved.
 //
 
 #import "CouchListViewController.h"
-#import "iGeoCouchConstants.h"
+#import "gcBrowserConstants.h"
 
 
 @implementation CouchListViewController

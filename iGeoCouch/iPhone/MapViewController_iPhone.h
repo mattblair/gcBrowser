@@ -1,6 +1,6 @@
 //
 //  MapViewController_iPhone.h
-//  iGeoCouch
+//  gcBrowser
 //
 //  Created by Matt Blair on 5/2/11.
 //  Copyright 2011 Elsewise LLC. All rights reserved.

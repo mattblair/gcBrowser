@@ -1,6 +1,6 @@
 //
 //  MapViewController_iPad.m
-//  iGeoCouch
+//  gcBrowser
 //
 //  Created by Matt Blair on 5/2/11.
 //  Copyright 2011 Elsewise LLC. All rights reserved.
@@ -110,10 +110,7 @@
         [couchListVC release];
         
         self.couchListPVC = couchPopover;
-        
-        // causing bad access on third use, so I temporarily commented release.
 
-#warning Memory for popover creation is not released properly here!!!
         [couchPopover release];
         
     }
