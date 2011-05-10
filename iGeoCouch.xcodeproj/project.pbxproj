@@ -1,0 +1,769 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C95CBB63136F453300C49BF2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C95CBB62136F453300C49BF2 /* UIKit.framework */; };
+		C95CBB65136F453300C49BF2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C95CBB64136F453300C49BF2 /* Foundation.framework */; };
+		C95CBB67136F453300C49BF2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C95CBB66136F453300C49BF2 /* CoreGraphics.framework */; };
+		C95CBB69136F453300C49BF2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C95CBB68136F453300C49BF2 /* CoreData.framework */; };
+		C95CBB6F136F453300C49BF2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C95CBB6D136F453300C49BF2 /* InfoPlist.strings */; };
+		C95CBB72136F453300C49BF2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C95CBB71136F453300C49BF2 /* main.m */; };
+		C95CBB75136F453300C49BF2 /* iGeoCouchAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C95CBB74136F453300C49BF2 /* iGeoCouchAppDelegate.m */; };
+		C95CBB78136F453300C49BF2 /* iGeoCouch.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C95CBB76136F453300C49BF2 /* iGeoCouch.xcdatamodeld */; };
+		C95CBB7C136F453300C49BF2 /* iGeoCouchAppDelegate_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = C95CBB7B136F453300C49BF2 /* iGeoCouchAppDelegate_iPhone.m */; };
+		C95CBB7F136F453300C49BF2 /* MainWindow_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = C95CBB7D136F453300C49BF2 /* MainWindow_iPhone.xib */; };
+		C95CBB83136F453300C49BF2 /* iGeoCouchAppDelegate_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = C95CBB82136F453300C49BF2 /* iGeoCouchAppDelegate_iPad.m */; };
+		C95CBB86136F453300C49BF2 /* MainWindow_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C95CBB84136F453300C49BF2 /* MainWindow_iPad.xib */; };
+		C95CBB8D136F453300C49BF2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C95CBB62136F453300C49BF2 /* UIKit.framework */; };
+		C95CBB8E136F453300C49BF2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C95CBB64136F453300C49BF2 /* Foundation.framework */; };
+		C95CBB8F136F453300C49BF2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C95CBB66136F453300C49BF2 /* CoreGraphics.framework */; };
+		C95CBB90136F453300C49BF2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C95CBB68136F453300C49BF2 /* CoreData.framework */; };
+		C95CBB98136F453300C49BF2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C95CBB96136F453300C49BF2 /* InfoPlist.strings */; };
+		C95CBB9B136F453300C49BF2 /* iGeoCouchTests.h in Resources */ = {isa = PBXBuildFile; fileRef = C95CBB9A136F453300C49BF2 /* iGeoCouchTests.h */; };
+		C95CBB9D136F453300C49BF2 /* iGeoCouchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C95CBB9C136F453300C49BF2 /* iGeoCouchTests.m */; };
+		C95CBBA8136F456200C49BF2 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C95CBBA7136F456200C49BF2 /* MapViewController.m */; };
+		C95CBBAC136F458E00C49BF2 /* MapViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = C95CBBAA136F458E00C49BF2 /* MapViewController_iPhone.m */; };
+		C95CBBAD136F458E00C49BF2 /* MapViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = C95CBBAB136F458E00C49BF2 /* MapViewController_iPhone.xib */; };
+		C95CBBB1136F45B700C49BF2 /* MapViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = C95CBBAF136F45B700C49BF2 /* MapViewController_iPad.m */; };
+		C95CBBB2136F45B700C49BF2 /* MapViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C95CBBB0136F45B700C49BF2 /* MapViewController_iPad.xib */; };
+		C95CBBB5136F473800C49BF2 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C95CBBB3136F473800C49BF2 /* CoreLocation.framework */; };
+		C95CBBB6136F473800C49BF2 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C95CBBB4136F473800C49BF2 /* MapKit.framework */; };
+		C95CBBBD136F485300C49BF2 /* GeoCouchAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = C95CBBBC136F485300C49BF2 /* GeoCouchAnnotation.m */; };
+		C95CBC2D136F7CCE00C49BF2 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = C95CBC0A136F7CCE00C49BF2 /* ASIAuthenticationDialog.m */; };
+		C95CBC2E136F7CCE00C49BF2 /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = C95CBC0D136F7CCE00C49BF2 /* ASIDataCompressor.m */; };
+		C95CBC2F136F7CCE00C49BF2 /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = C95CBC0F136F7CCE00C49BF2 /* ASIDataDecompressor.m */; };
+		C95CBC30136F7CCE00C49BF2 /* ASIDownloadCache.m in Sources */ = {isa = PBXBuildFile; fileRef = C95CBC11136F7CCE00C49BF2 /* ASIDownloadCache.m */; };
+		C95CBC31136F7CCE00C49BF2 /* ASIFormDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C95CBC13136F7CCE00C49BF2 /* ASIFormDataRequest.m */; };
+		C95CBC32136F7CCE00C49BF2 /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C95CBC15136F7CCE00C49BF2 /* ASIHTTPRequest.m */; };
+		C95CBC33136F7CCE00C49BF2 /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = C95CBC19136F7CCE00C49BF2 /* ASIInputStream.m */; };
+		C95CBC34136F7CCE00C49BF2 /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = C95CBC1B136F7CCE00C49BF2 /* ASINetworkQueue.m */; };
+		C95CBC36136F7CCE00C49BF2 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = C95CBC20136F7CCE00C49BF2 /* Reachability.m */; };
+		C95CBC37136F7CCE00C49BF2 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = C95CBC24136F7CCE00C49BF2 /* NSObject+SBJSON.m */; };
+		C95CBC38136F7CCE00C49BF2 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = C95CBC26136F7CCE00C49BF2 /* NSString+SBJSON.m */; };
+		C95CBC39136F7CCE00C49BF2 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = C95CBC28136F7CCE00C49BF2 /* SBJsonBase.m */; };
+		C95CBC3A136F7CCE00C49BF2 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C95CBC2A136F7CCE00C49BF2 /* SBJsonParser.m */; };
+		C95CBC3B136F7CCE00C49BF2 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = C95CBC2C136F7CCE00C49BF2 /* SBJsonWriter.m */; };
+		C95CBC46136F7E4D00C49BF2 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C95CBC45136F7E4D00C49BF2 /* CFNetwork.framework */; };
+		C95CBC4A136F7E9600C49BF2 /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C95CBC47136F7E9600C49BF2 /* libz.1.2.3.dylib */; };
+		C95CBC4B136F7E9600C49BF2 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C95CBC48136F7E9600C49BF2 /* MobileCoreServices.framework */; };
+		C95CBC4C136F7E9600C49BF2 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C95CBC49136F7E9600C49BF2 /* SystemConfiguration.framework */; };
+		C997D7C513704C19005D042F /* 103-map.png in Resources */ = {isa = PBXBuildFile; fileRef = C997D7BD13704C19005D042F /* 103-map.png */; };
+		C997D7C613704C19005D042F /* 103-map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C997D7BE13704C19005D042F /* 103-map@2x.png */; };
+		C997D7C713704C19005D042F /* 19-gear.png in Resources */ = {isa = PBXBuildFile; fileRef = C997D7BF13704C19005D042F /* 19-gear.png */; };
+		C997D7C813704C19005D042F /* 19-gear@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C997D7C013704C19005D042F /* 19-gear@2x.png */; };
+		C997D7C913704C19005D042F /* 56-cloud.png in Resources */ = {isa = PBXBuildFile; fileRef = C997D7C113704C19005D042F /* 56-cloud.png */; };
+		C997D7CA13704C19005D042F /* 56-cloud@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C997D7C213704C19005D042F /* 56-cloud@2x.png */; };
+		C997D7CB13704C19005D042F /* 74-location.png in Resources */ = {isa = PBXBuildFile; fileRef = C997D7C313704C19005D042F /* 74-location.png */; };
+		C997D7CC13704C19005D042F /* 74-location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C997D7C413704C19005D042F /* 74-location@2x.png */; };
+		C9FE467D1370A4C700025503 /* CouchSources.plist in Resources */ = {isa = PBXBuildFile; fileRef = C9FE467C1370A4C700025503 /* CouchSources.plist */; };
+		C9FE46821370B49400025503 /* CouchListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FE46801370B49400025503 /* CouchListViewController.m */; };
+		C9FE46831370B49400025503 /* CouchListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9FE46811370B49400025503 /* CouchListViewController.xib */; };
+		C9FE46861370C31F00025503 /* iGeoCouchConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FE46851370C31F00025503 /* iGeoCouchConstants.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C95CBB91136F453300C49BF2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C95CBB55136F453300C49BF2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C95CBB5D136F453300C49BF2;
+			remoteInfo = iGeoCouch;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C95CBB5E136F453300C49BF2 /* iGeoCouch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iGeoCouch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C95CBB62136F453300C49BF2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		C95CBB64136F453300C49BF2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		C95CBB66136F453300C49BF2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		C95CBB68136F453300C49BF2 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		C95CBB6C136F453300C49BF2 /* iGeoCouch-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iGeoCouch-Info.plist"; sourceTree = "<group>"; };
+		C95CBB6E136F453300C49BF2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C95CBB70136F453300C49BF2 /* iGeoCouch-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iGeoCouch-Prefix.pch"; sourceTree = "<group>"; };
+		C95CBB71136F453300C49BF2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C95CBB73136F453300C49BF2 /* iGeoCouchAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iGeoCouchAppDelegate.h; sourceTree = "<group>"; };
+		C95CBB74136F453300C49BF2 /* iGeoCouchAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iGeoCouchAppDelegate.m; sourceTree = "<group>"; };
+		C95CBB77136F453300C49BF2 /* iGeoCouch.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iGeoCouch.xcdatamodel; sourceTree = "<group>"; };
+		C95CBB7A136F453300C49BF2 /* iGeoCouchAppDelegate_iPhone.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = iGeoCouchAppDelegate_iPhone.h; path = iPhone/iGeoCouchAppDelegate_iPhone.h; sourceTree = "<group>"; };
+		C95CBB7B136F453300C49BF2 /* iGeoCouchAppDelegate_iPhone.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = iGeoCouchAppDelegate_iPhone.m; path = iPhone/iGeoCouchAppDelegate_iPhone.m; sourceTree = "<group>"; };
+		C95CBB7E136F453300C49BF2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = iPhone/en.lproj/MainWindow_iPhone.xib; sourceTree = "<group>"; };
+		C95CBB81136F453300C49BF2 /* iGeoCouchAppDelegate_iPad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = iGeoCouchAppDelegate_iPad.h; path = iPad/iGeoCouchAppDelegate_iPad.h; sourceTree = "<group>"; };
+		C95CBB82136F453300C49BF2 /* iGeoCouchAppDelegate_iPad.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = iGeoCouchAppDelegate_iPad.m; path = iPad/iGeoCouchAppDelegate_iPad.m; sourceTree = "<group>"; };
+		C95CBB85136F453300C49BF2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = iPad/en.lproj/MainWindow_iPad.xib; sourceTree = "<group>"; };
+		C95CBB8C136F453300C49BF2 /* iGeoCouchTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iGeoCouchTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C95CBB95136F453300C49BF2 /* iGeoCouchTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iGeoCouchTests-Info.plist"; sourceTree = "<group>"; };
+		C95CBB97136F453300C49BF2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C95CBB99136F453300C49BF2 /* iGeoCouchTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iGeoCouchTests-Prefix.pch"; sourceTree = "<group>"; };
+		C95CBB9A136F453300C49BF2 /* iGeoCouchTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iGeoCouchTests.h; sourceTree = "<group>"; };
+		C95CBB9C136F453300C49BF2 /* iGeoCouchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iGeoCouchTests.m; sourceTree = "<group>"; };
+		C95CBBA6136F456200C49BF2 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapViewController.h; path = Classes/MapViewController.h; sourceTree = "<group>"; };
+		C95CBBA7136F456200C49BF2 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapViewController.m; path = Classes/MapViewController.m; sourceTree = "<group>"; };
+		C95CBBA9136F458E00C49BF2 /* MapViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapViewController_iPhone.h; path = iPhone/MapViewController_iPhone.h; sourceTree = "<group>"; };
+		C95CBBAA136F458E00C49BF2 /* MapViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapViewController_iPhone.m; path = iPhone/MapViewController_iPhone.m; sourceTree = "<group>"; };
+		C95CBBAB136F458E00C49BF2 /* MapViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MapViewController_iPhone.xib; path = iPhone/MapViewController_iPhone.xib; sourceTree = "<group>"; };
+		C95CBBAE136F45B700C49BF2 /* MapViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapViewController_iPad.h; path = iPad/MapViewController_iPad.h; sourceTree = "<group>"; };
+		C95CBBAF136F45B700C49BF2 /* MapViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapViewController_iPad.m; path = iPad/MapViewController_iPad.m; sourceTree = "<group>"; };
+		C95CBBB0136F45B700C49BF2 /* MapViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MapViewController_iPad.xib; path = iPad/MapViewController_iPad.xib; sourceTree = "<group>"; };
+		C95CBBB3136F473800C49BF2 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		C95CBBB4136F473800C49BF2 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		C95CBBBB136F485300C49BF2 /* GeoCouchAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GeoCouchAnnotation.h; path = Classes/GeoCouchAnnotation.h; sourceTree = "<group>"; };
+		C95CBBBC136F485300C49BF2 /* GeoCouchAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GeoCouchAnnotation.m; path = Classes/GeoCouchAnnotation.m; sourceTree = "<group>"; };
+		C95CBC09136F7CCE00C49BF2 /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
+		C95CBC0A136F7CCE00C49BF2 /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIAuthenticationDialog.m; sourceTree = "<group>"; };
+		C95CBC0B136F7CCE00C49BF2 /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICacheDelegate.h; sourceTree = "<group>"; };
+		C95CBC0C136F7CCE00C49BF2 /* ASIDataCompressor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIDataCompressor.h; sourceTree = "<group>"; };
+		C95CBC0D136F7CCE00C49BF2 /* ASIDataCompressor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIDataCompressor.m; sourceTree = "<group>"; };
+		C95CBC0E136F7CCE00C49BF2 /* ASIDataDecompressor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIDataDecompressor.h; sourceTree = "<group>"; };
+		C95CBC0F136F7CCE00C49BF2 /* ASIDataDecompressor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIDataDecompressor.m; sourceTree = "<group>"; };
+		C95CBC10136F7CCE00C49BF2 /* ASIDownloadCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIDownloadCache.h; sourceTree = "<group>"; };
+		C95CBC11136F7CCE00C49BF2 /* ASIDownloadCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIDownloadCache.m; sourceTree = "<group>"; };
+		C95CBC12136F7CCE00C49BF2 /* ASIFormDataRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIFormDataRequest.h; sourceTree = "<group>"; };
+		C95CBC13136F7CCE00C49BF2 /* ASIFormDataRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIFormDataRequest.m; sourceTree = "<group>"; };
+		C95CBC14136F7CCE00C49BF2 /* ASIHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIHTTPRequest.h; sourceTree = "<group>"; };
+		C95CBC15136F7CCE00C49BF2 /* ASIHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIHTTPRequest.m; sourceTree = "<group>"; };
+		C95CBC16136F7CCE00C49BF2 /* ASIHTTPRequestConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIHTTPRequestConfig.h; sourceTree = "<group>"; };
+		C95CBC17136F7CCE00C49BF2 /* ASIHTTPRequestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIHTTPRequestDelegate.h; sourceTree = "<group>"; };
+		C95CBC18136F7CCE00C49BF2 /* ASIInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIInputStream.h; sourceTree = "<group>"; };
+		C95CBC19136F7CCE00C49BF2 /* ASIInputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIInputStream.m; sourceTree = "<group>"; };
+		C95CBC1A136F7CCE00C49BF2 /* ASINetworkQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASINetworkQueue.h; sourceTree = "<group>"; };
+		C95CBC1B136F7CCE00C49BF2 /* ASINetworkQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASINetworkQueue.m; sourceTree = "<group>"; };
+		C95CBC1C136F7CCE00C49BF2 /* ASIProgressDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIProgressDelegate.h; sourceTree = "<group>"; };
+		C95CBC1F136F7CCE00C49BF2 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		C95CBC20136F7CCE00C49BF2 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		C95CBC22136F7CCE00C49BF2 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
+		C95CBC23136F7CCE00C49BF2 /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
+		C95CBC24136F7CCE00C49BF2 /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
+		C95CBC25136F7CCE00C49BF2 /* NSString+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SBJSON.h"; sourceTree = "<group>"; };
+		C95CBC26136F7CCE00C49BF2 /* NSString+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SBJSON.m"; sourceTree = "<group>"; };
+		C95CBC27136F7CCE00C49BF2 /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonBase.h; sourceTree = "<group>"; };
+		C95CBC28136F7CCE00C49BF2 /* SBJsonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonBase.m; sourceTree = "<group>"; };
+		C95CBC29136F7CCE00C49BF2 /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
+		C95CBC2A136F7CCE00C49BF2 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
+		C95CBC2B136F7CCE00C49BF2 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
+		C95CBC2C136F7CCE00C49BF2 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		C95CBC45136F7E4D00C49BF2 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		C95CBC47136F7E9600C49BF2 /* libz.1.2.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.3.dylib; path = usr/lib/libz.1.2.3.dylib; sourceTree = SDKROOT; };
+		C95CBC48136F7E9600C49BF2 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		C95CBC49136F7E9600C49BF2 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		C997D7BD13704C19005D042F /* 103-map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "103-map.png"; sourceTree = "<group>"; };
+		C997D7BE13704C19005D042F /* 103-map@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "103-map@2x.png"; sourceTree = "<group>"; };
+		C997D7BF13704C19005D042F /* 19-gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "19-gear.png"; sourceTree = "<group>"; };
+		C997D7C013704C19005D042F /* 19-gear@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "19-gear@2x.png"; sourceTree = "<group>"; };
+		C997D7C113704C19005D042F /* 56-cloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "56-cloud.png"; sourceTree = "<group>"; };
+		C997D7C213704C19005D042F /* 56-cloud@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "56-cloud@2x.png"; sourceTree = "<group>"; };
+		C997D7C313704C19005D042F /* 74-location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "74-location.png"; sourceTree = "<group>"; };
+		C997D7C413704C19005D042F /* 74-location@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "74-location@2x.png"; sourceTree = "<group>"; };
+		C9FE467C1370A4C700025503 /* CouchSources.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CouchSources.plist; sourceTree = "<group>"; };
+		C9FE467F1370B49400025503 /* CouchListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CouchListViewController.h; path = Classes/CouchListViewController.h; sourceTree = "<group>"; };
+		C9FE46801370B49400025503 /* CouchListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CouchListViewController.m; path = Classes/CouchListViewController.m; sourceTree = "<group>"; };
+		C9FE46811370B49400025503 /* CouchListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CouchListViewController.xib; path = Classes/CouchListViewController.xib; sourceTree = "<group>"; };
+		C9FE46841370C31F00025503 /* iGeoCouchConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iGeoCouchConstants.h; sourceTree = "<group>"; };
+		C9FE46851370C31F00025503 /* iGeoCouchConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iGeoCouchConstants.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C95CBB5B136F453300C49BF2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C95CBC4A136F7E9600C49BF2 /* libz.1.2.3.dylib in Frameworks */,
+				C95CBC4B136F7E9600C49BF2 /* MobileCoreServices.framework in Frameworks */,
+				C95CBC4C136F7E9600C49BF2 /* SystemConfiguration.framework in Frameworks */,
+				C95CBC46136F7E4D00C49BF2 /* CFNetwork.framework in Frameworks */,
+				C95CBBB5136F473800C49BF2 /* CoreLocation.framework in Frameworks */,
+				C95CBBB6136F473800C49BF2 /* MapKit.framework in Frameworks */,
+				C95CBB63136F453300C49BF2 /* UIKit.framework in Frameworks */,
+				C95CBB65136F453300C49BF2 /* Foundation.framework in Frameworks */,
+				C95CBB67136F453300C49BF2 /* CoreGraphics.framework in Frameworks */,
+				C95CBB69136F453300C49BF2 /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C95CBB88136F453300C49BF2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C95CBB8D136F453300C49BF2 /* UIKit.framework in Frameworks */,
+				C95CBB8E136F453300C49BF2 /* Foundation.framework in Frameworks */,
+				C95CBB8F136F453300C49BF2 /* CoreGraphics.framework in Frameworks */,
+				C95CBB90136F453300C49BF2 /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C95CBB53136F453300C49BF2 = {
+			isa = PBXGroup;
+			children = (
+				C95CBB6A136F453300C49BF2 /* iGeoCouch */,
+				C95CBB93136F453300C49BF2 /* iGeoCouchTests */,
+				C95CBB61136F453300C49BF2 /* Frameworks */,
+				C95CBB5F136F453300C49BF2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C95CBB5F136F453300C49BF2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C95CBB5E136F453300C49BF2 /* iGeoCouch.app */,
+				C95CBB8C136F453300C49BF2 /* iGeoCouchTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C95CBB61136F453300C49BF2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C95CBC47136F7E9600C49BF2 /* libz.1.2.3.dylib */,
+				C95CBC48136F7E9600C49BF2 /* MobileCoreServices.framework */,
+				C95CBC49136F7E9600C49BF2 /* SystemConfiguration.framework */,
+				C95CBC45136F7E4D00C49BF2 /* CFNetwork.framework */,
+				C95CBBB3136F473800C49BF2 /* CoreLocation.framework */,
+				C95CBBB4136F473800C49BF2 /* MapKit.framework */,
+				C95CBB62136F453300C49BF2 /* UIKit.framework */,
+				C95CBB64136F453300C49BF2 /* Foundation.framework */,
+				C95CBB66136F453300C49BF2 /* CoreGraphics.framework */,
+				C95CBB68136F453300C49BF2 /* CoreData.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C95CBB6A136F453300C49BF2 /* iGeoCouch */ = {
+			isa = PBXGroup;
+			children = (
+				C95CBB73136F453300C49BF2 /* iGeoCouchAppDelegate.h */,
+				C95CBB74136F453300C49BF2 /* iGeoCouchAppDelegate.m */,
+				C95CBB76136F453300C49BF2 /* iGeoCouch.xcdatamodeld */,
+				C95CBBB7136F47CC00C49BF2 /* Classes */,
+				C95CBB79136F453300C49BF2 /* iPhone */,
+				C95CBB80136F453300C49BF2 /* iPad */,
+				C95CBC07136F7CCE00C49BF2 /* 3rdParty */,
+				C997D7BA13704C19005D042F /* Resources */,
+				C95CBB6B136F453300C49BF2 /* Supporting Files */,
+			);
+			path = iGeoCouch;
+			sourceTree = "<group>";
+		};
+		C95CBB6B136F453300C49BF2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C95CBB6C136F453300C49BF2 /* iGeoCouch-Info.plist */,
+				C95CBB6D136F453300C49BF2 /* InfoPlist.strings */,
+				C95CBB70136F453300C49BF2 /* iGeoCouch-Prefix.pch */,
+				C95CBB71136F453300C49BF2 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C95CBB79136F453300C49BF2 /* iPhone */ = {
+			isa = PBXGroup;
+			children = (
+				C95CBB7A136F453300C49BF2 /* iGeoCouchAppDelegate_iPhone.h */,
+				C95CBB7B136F453300C49BF2 /* iGeoCouchAppDelegate_iPhone.m */,
+				C95CBB7D136F453300C49BF2 /* MainWindow_iPhone.xib */,
+				C95CBBA9136F458E00C49BF2 /* MapViewController_iPhone.h */,
+				C95CBBAA136F458E00C49BF2 /* MapViewController_iPhone.m */,
+				C95CBBAB136F458E00C49BF2 /* MapViewController_iPhone.xib */,
+			);
+			name = iPhone;
+			sourceTree = "<group>";
+		};
+		C95CBB80136F453300C49BF2 /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+				C95CBB81136F453300C49BF2 /* iGeoCouchAppDelegate_iPad.h */,
+				C95CBB82136F453300C49BF2 /* iGeoCouchAppDelegate_iPad.m */,
+				C95CBB84136F453300C49BF2 /* MainWindow_iPad.xib */,
+				C95CBBAE136F45B700C49BF2 /* MapViewController_iPad.h */,
+				C95CBBAF136F45B700C49BF2 /* MapViewController_iPad.m */,
+				C95CBBB0136F45B700C49BF2 /* MapViewController_iPad.xib */,
+			);
+			name = iPad;
+			sourceTree = "<group>";
+		};
+		C95CBB93136F453300C49BF2 /* iGeoCouchTests */ = {
+			isa = PBXGroup;
+			children = (
+				C95CBB9A136F453300C49BF2 /* iGeoCouchTests.h */,
+				C95CBB9C136F453300C49BF2 /* iGeoCouchTests.m */,
+				C95CBB94136F453300C49BF2 /* Supporting Files */,
+			);
+			path = iGeoCouchTests;
+			sourceTree = "<group>";
+		};
+		C95CBB94136F453300C49BF2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C95CBB95136F453300C49BF2 /* iGeoCouchTests-Info.plist */,
+				C95CBB96136F453300C49BF2 /* InfoPlist.strings */,
+				C95CBB99136F453300C49BF2 /* iGeoCouchTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C95CBBB7136F47CC00C49BF2 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				C95CBBA6136F456200C49BF2 /* MapViewController.h */,
+				C95CBBA7136F456200C49BF2 /* MapViewController.m */,
+				C95CBBBB136F485300C49BF2 /* GeoCouchAnnotation.h */,
+				C95CBBBC136F485300C49BF2 /* GeoCouchAnnotation.m */,
+				C9FE467F1370B49400025503 /* CouchListViewController.h */,
+				C9FE46801370B49400025503 /* CouchListViewController.m */,
+				C9FE46811370B49400025503 /* CouchListViewController.xib */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		C95CBC07136F7CCE00C49BF2 /* 3rdParty */ = {
+			isa = PBXGroup;
+			children = (
+				C95CBC08136F7CCE00C49BF2 /* asi-http-req */,
+				C95CBC21136F7CCE00C49BF2 /* JSON */,
+			);
+			name = 3rdParty;
+			path = Classes/3rdParty;
+			sourceTree = "<group>";
+		};
+		C95CBC08136F7CCE00C49BF2 /* asi-http-req */ = {
+			isa = PBXGroup;
+			children = (
+				C95CBC09136F7CCE00C49BF2 /* ASIAuthenticationDialog.h */,
+				C95CBC0A136F7CCE00C49BF2 /* ASIAuthenticationDialog.m */,
+				C95CBC0B136F7CCE00C49BF2 /* ASICacheDelegate.h */,
+				C95CBC0C136F7CCE00C49BF2 /* ASIDataCompressor.h */,
+				C95CBC0D136F7CCE00C49BF2 /* ASIDataCompressor.m */,
+				C95CBC0E136F7CCE00C49BF2 /* ASIDataDecompressor.h */,
+				C95CBC0F136F7CCE00C49BF2 /* ASIDataDecompressor.m */,
+				C95CBC10136F7CCE00C49BF2 /* ASIDownloadCache.h */,
+				C95CBC11136F7CCE00C49BF2 /* ASIDownloadCache.m */,
+				C95CBC12136F7CCE00C49BF2 /* ASIFormDataRequest.h */,
+				C95CBC13136F7CCE00C49BF2 /* ASIFormDataRequest.m */,
+				C95CBC14136F7CCE00C49BF2 /* ASIHTTPRequest.h */,
+				C95CBC15136F7CCE00C49BF2 /* ASIHTTPRequest.m */,
+				C95CBC16136F7CCE00C49BF2 /* ASIHTTPRequestConfig.h */,
+				C95CBC17136F7CCE00C49BF2 /* ASIHTTPRequestDelegate.h */,
+				C95CBC18136F7CCE00C49BF2 /* ASIInputStream.h */,
+				C95CBC19136F7CCE00C49BF2 /* ASIInputStream.m */,
+				C95CBC1A136F7CCE00C49BF2 /* ASINetworkQueue.h */,
+				C95CBC1B136F7CCE00C49BF2 /* ASINetworkQueue.m */,
+				C95CBC1C136F7CCE00C49BF2 /* ASIProgressDelegate.h */,
+				C95CBC1F136F7CCE00C49BF2 /* Reachability.h */,
+				C95CBC20136F7CCE00C49BF2 /* Reachability.m */,
+			);
+			path = "asi-http-req";
+			sourceTree = "<group>";
+		};
+		C95CBC21136F7CCE00C49BF2 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				C95CBC22136F7CCE00C49BF2 /* JSON.h */,
+				C95CBC23136F7CCE00C49BF2 /* NSObject+SBJSON.h */,
+				C95CBC24136F7CCE00C49BF2 /* NSObject+SBJSON.m */,
+				C95CBC25136F7CCE00C49BF2 /* NSString+SBJSON.h */,
+				C95CBC26136F7CCE00C49BF2 /* NSString+SBJSON.m */,
+				C95CBC27136F7CCE00C49BF2 /* SBJsonBase.h */,
+				C95CBC28136F7CCE00C49BF2 /* SBJsonBase.m */,
+				C95CBC29136F7CCE00C49BF2 /* SBJsonParser.h */,
+				C95CBC2A136F7CCE00C49BF2 /* SBJsonParser.m */,
+				C95CBC2B136F7CCE00C49BF2 /* SBJsonWriter.h */,
+				C95CBC2C136F7CCE00C49BF2 /* SBJsonWriter.m */,
+			);
+			path = JSON;
+			sourceTree = "<group>";
+		};
+		C997D7BA13704C19005D042F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C997D7BB13704C19005D042F /* Data */,
+				C997D7BC13704C19005D042F /* Images */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		C997D7BB13704C19005D042F /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				C9FE467C1370A4C700025503 /* CouchSources.plist */,
+				C9FE46841370C31F00025503 /* iGeoCouchConstants.h */,
+				C9FE46851370C31F00025503 /* iGeoCouchConstants.m */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		C997D7BC13704C19005D042F /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				C997D7BD13704C19005D042F /* 103-map.png */,
+				C997D7BE13704C19005D042F /* 103-map@2x.png */,
+				C997D7BF13704C19005D042F /* 19-gear.png */,
+				C997D7C013704C19005D042F /* 19-gear@2x.png */,
+				C997D7C113704C19005D042F /* 56-cloud.png */,
+				C997D7C213704C19005D042F /* 56-cloud@2x.png */,
+				C997D7C313704C19005D042F /* 74-location.png */,
+				C997D7C413704C19005D042F /* 74-location@2x.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C95CBB5D136F453300C49BF2 /* iGeoCouch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C95CBBA0136F453300C49BF2 /* Build configuration list for PBXNativeTarget "iGeoCouch" */;
+			buildPhases = (
+				C95CBB5A136F453300C49BF2 /* Sources */,
+				C95CBB5B136F453300C49BF2 /* Frameworks */,
+				C95CBB5C136F453300C49BF2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iGeoCouch;
+			productName = iGeoCouch;
+			productReference = C95CBB5E136F453300C49BF2 /* iGeoCouch.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C95CBB8B136F453300C49BF2 /* iGeoCouchTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C95CBBA3136F453300C49BF2 /* Build configuration list for PBXNativeTarget "iGeoCouchTests" */;
+			buildPhases = (
+				C95CBB87136F453300C49BF2 /* Sources */,
+				C95CBB88136F453300C49BF2 /* Frameworks */,
+				C95CBB89136F453300C49BF2 /* Resources */,
+				C95CBB8A136F453300C49BF2 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C95CBB92136F453300C49BF2 /* PBXTargetDependency */,
+			);
+			name = iGeoCouchTests;
+			productName = iGeoCouchTests;
+			productReference = C95CBB8C136F453300C49BF2 /* iGeoCouchTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C95CBB55136F453300C49BF2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "Elsewise LLC";
+			};
+			buildConfigurationList = C95CBB58136F453300C49BF2 /* Build configuration list for PBXProject "iGeoCouch" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = C95CBB53136F453300C49BF2;
+			productRefGroup = C95CBB5F136F453300C49BF2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C95CBB5D136F453300C49BF2 /* iGeoCouch */,
+				C95CBB8B136F453300C49BF2 /* iGeoCouchTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C95CBB5C136F453300C49BF2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C95CBB6F136F453300C49BF2 /* InfoPlist.strings in Resources */,
+				C95CBB7F136F453300C49BF2 /* MainWindow_iPhone.xib in Resources */,
+				C95CBB86136F453300C49BF2 /* MainWindow_iPad.xib in Resources */,
+				C95CBBAD136F458E00C49BF2 /* MapViewController_iPhone.xib in Resources */,
+				C95CBBB2136F45B700C49BF2 /* MapViewController_iPad.xib in Resources */,
+				C997D7C513704C19005D042F /* 103-map.png in Resources */,
+				C997D7C613704C19005D042F /* 103-map@2x.png in Resources */,
+				C997D7C713704C19005D042F /* 19-gear.png in Resources */,
+				C997D7C813704C19005D042F /* 19-gear@2x.png in Resources */,
+				C997D7C913704C19005D042F /* 56-cloud.png in Resources */,
+				C997D7CA13704C19005D042F /* 56-cloud@2x.png in Resources */,
+				C997D7CB13704C19005D042F /* 74-location.png in Resources */,
+				C997D7CC13704C19005D042F /* 74-location@2x.png in Resources */,
+				C9FE467D1370A4C700025503 /* CouchSources.plist in Resources */,
+				C9FE46831370B49400025503 /* CouchListViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C95CBB89136F453300C49BF2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C95CBB98136F453300C49BF2 /* InfoPlist.strings in Resources */,
+				C95CBB9B136F453300C49BF2 /* iGeoCouchTests.h in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C95CBB8A136F453300C49BF2 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C95CBB5A136F453300C49BF2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C95CBB72136F453300C49BF2 /* main.m in Sources */,
+				C95CBB75136F453300C49BF2 /* iGeoCouchAppDelegate.m in Sources */,
+				C95CBB78136F453300C49BF2 /* iGeoCouch.xcdatamodeld in Sources */,
+				C95CBB7C136F453300C49BF2 /* iGeoCouchAppDelegate_iPhone.m in Sources */,
+				C95CBB83136F453300C49BF2 /* iGeoCouchAppDelegate_iPad.m in Sources */,
+				C95CBBA8136F456200C49BF2 /* MapViewController.m in Sources */,
+				C95CBBAC136F458E00C49BF2 /* MapViewController_iPhone.m in Sources */,
+				C95CBBB1136F45B700C49BF2 /* MapViewController_iPad.m in Sources */,
+				C95CBBBD136F485300C49BF2 /* GeoCouchAnnotation.m in Sources */,
+				C95CBC2D136F7CCE00C49BF2 /* ASIAuthenticationDialog.m in Sources */,
+				C95CBC2E136F7CCE00C49BF2 /* ASIDataCompressor.m in Sources */,
+				C95CBC2F136F7CCE00C49BF2 /* ASIDataDecompressor.m in Sources */,
+				C95CBC30136F7CCE00C49BF2 /* ASIDownloadCache.m in Sources */,
+				C95CBC31136F7CCE00C49BF2 /* ASIFormDataRequest.m in Sources */,
+				C95CBC32136F7CCE00C49BF2 /* ASIHTTPRequest.m in Sources */,
+				C95CBC33136F7CCE00C49BF2 /* ASIInputStream.m in Sources */,
+				C95CBC34136F7CCE00C49BF2 /* ASINetworkQueue.m in Sources */,
+				C95CBC36136F7CCE00C49BF2 /* Reachability.m in Sources */,
+				C95CBC37136F7CCE00C49BF2 /* NSObject+SBJSON.m in Sources */,
+				C95CBC38136F7CCE00C49BF2 /* NSString+SBJSON.m in Sources */,
+				C95CBC39136F7CCE00C49BF2 /* SBJsonBase.m in Sources */,
+				C95CBC3A136F7CCE00C49BF2 /* SBJsonParser.m in Sources */,
+				C95CBC3B136F7CCE00C49BF2 /* SBJsonWriter.m in Sources */,
+				C9FE46821370B49400025503 /* CouchListViewController.m in Sources */,
+				C9FE46861370C31F00025503 /* iGeoCouchConstants.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C95CBB87136F453300C49BF2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C95CBB9D136F453300C49BF2 /* iGeoCouchTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C95CBB92136F453300C49BF2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C95CBB5D136F453300C49BF2 /* iGeoCouch */;
+			targetProxy = C95CBB91136F453300C49BF2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C95CBB6D136F453300C49BF2 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C95CBB6E136F453300C49BF2 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		C95CBB7D136F453300C49BF2 /* MainWindow_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C95CBB7E136F453300C49BF2 /* en */,
+			);
+			name = MainWindow_iPhone.xib;
+			sourceTree = "<group>";
+		};
+		C95CBB84136F453300C49BF2 /* MainWindow_iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C95CBB85136F453300C49BF2 /* en */,
+			);
+			name = MainWindow_iPad.xib;
+			sourceTree = "<group>";
+		};
+		C95CBB96136F453300C49BF2 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C95CBB97136F453300C49BF2 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C95CBB9E136F453300C49BF2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C95CBB9F136F453300C49BF2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		C95CBBA1136F453300C49BF2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iGeoCouch/iGeoCouch-Prefix.pch";
+				INFOPLIST_FILE = "iGeoCouch/iGeoCouch-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		C95CBBA2136F453300C49BF2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iGeoCouch/iGeoCouch-Prefix.pch";
+				INFOPLIST_FILE = "iGeoCouch/iGeoCouch-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		C95CBBA4136F453300C49BF2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/iGeoCouch.app/iGeoCouch";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iGeoCouchTests/iGeoCouchTests-Prefix.pch";
+				INFOPLIST_FILE = "iGeoCouchTests/iGeoCouchTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		C95CBBA5136F453300C49BF2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/iGeoCouch.app/iGeoCouch";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iGeoCouchTests/iGeoCouchTests-Prefix.pch";
+				INFOPLIST_FILE = "iGeoCouchTests/iGeoCouchTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C95CBB58136F453300C49BF2 /* Build configuration list for PBXProject "iGeoCouch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C95CBB9E136F453300C49BF2 /* Debug */,
+				C95CBB9F136F453300C49BF2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C95CBBA0136F453300C49BF2 /* Build configuration list for PBXNativeTarget "iGeoCouch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C95CBBA1136F453300C49BF2 /* Debug */,
+				C95CBBA2136F453300C49BF2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C95CBBA3136F453300C49BF2 /* Build configuration list for PBXNativeTarget "iGeoCouchTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C95CBBA4136F453300C49BF2 /* Debug */,
+				C95CBBA5136F453300C49BF2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C95CBB76136F453300C49BF2 /* iGeoCouch.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C95CBB77136F453300C49BF2 /* iGeoCouch.xcdatamodel */,
+			);
+			currentVersion = C95CBB77136F453300C49BF2 /* iGeoCouch.xcdatamodel */;
+			path = iGeoCouch.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = C95CBB55136F453300C49BF2 /* Project object */;
+}

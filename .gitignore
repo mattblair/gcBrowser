@@ -1,0 +1,56 @@
+# based on:
+# https://github.com/github/gitignore/blob/master/Objective-C.gitignore
+# and 
+# https://github.com/github/gitignore/blob/master/Global/OSX.gitignore
+
+
+# Add project-specific ignores here, for example:
+
+# RESTConstants.m
+
+# Glyphish Retina icons are not licensed for release
+
+iGeoCouch/Resources/Images/*@2x.png
+
+
+
+
+# OS X-related
+
+.DS_Store
+profile
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+
+# Xcode
+# do you need the slash and star? github's file has it, most just have build or build/
+
+build/*
+
+# does IB still do this in Xcode 4?
+
+*~.nib/
+
+# project-related
+
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+
+# Workspace-related
+*.xcworkspace
+!default.xcworkspace
+xcuserdata
+
+# this is in github's recommendation, but I don't think I've seen it in the wild
+*.moved-aside
+
+

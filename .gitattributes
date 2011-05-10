@@ -1,0 +1,11 @@
+# Probably doesn't apply to single-developer projects, but...
+
+# Several websites suggest treating pbxproj files as binaries.
+# Examples:
+# http://progit.org/book/ch7-2.html
+# http://stackoverflow.com/questions/1549578/git-and-pbxproj
+# http://shanesbrain.net/2008/7/9/using-xcode-with-git
+#
+# I removed -diff so I can see any changes, but they won't be merged automatically.
+
+*.pbxproj -crlf -merge
