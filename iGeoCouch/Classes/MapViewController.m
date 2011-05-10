@@ -438,8 +438,20 @@
 						
 						NSLog(@"Clearing and refilling the annotations array");
                         
-                        NSMutableArray *pointAnnotationArray = [[NSMutableArray alloc] initWithCapacity:12];
+                        // explicit release at the end was causing bad access on iPhone but not iPad
+                        // b/c of MKMapView pokiness?
+                        //NSMutableArray *pointAnnotationArray = [[[NSMutableArray alloc] initWithCapacity:12] autorelease]; 
 						
+                        // switching to ivar mutable array, which will stick around
+                        if (self.pointsFoundInRegion) {
+                            [self.pointsFoundInRegion removeAllObjects];
+                        }
+                        else {
+                            NSMutableArray *pointAnnotationArray = [[NSMutableArray alloc] initWithCapacity:12];
+                            self.pointsFoundInRegion = pointAnnotationArray;
+                            [pointAnnotationArray release];
+                        }
+                        
 						GeoCouchAnnotation *ga = nil;
 						
 						// loop and add
@@ -460,14 +472,16 @@
 							
 							[ga setPointID:[aPoint valueForKey:@"id"]];
 							
-							[pointAnnotationArray addObject:ga];
+							//[pointAnnotationArray addObject:ga];
+                            [self.pointsFoundInRegion addObject:ga];
 							
 							[ga release];
 							
 						}
 						
                         
-						NSLog(@"pointAnnotationArray has %d points in it.", [pointAnnotationArray count]);
+						//NSLog(@"pointAnnotationArray has %d points in it.", [pointAnnotationArray count]);
+                        NSLog(@"pointAnnotationArray has %d points in it.", [self.pointsFoundInRegion count]);
 						
 						// want to clear out old annotations but keep the user's location
                         // because it can take a while to come back
@@ -480,9 +494,11 @@
                         
 						[theMapView removeAnnotations:annotationsToRemove];
 						
-						[theMapView addAnnotations:pointAnnotationArray]; 
+						//[theMapView addAnnotations:pointAnnotationArray]; 
+                        [theMapView addAnnotations:self.pointsFoundInRegion];
 						
-                        [pointAnnotationArray release];  // causing crash on iPhone but not iPad? autorel?
+                        // causing crash on iPhone but not iPad? autoreleasing the array instead
+                        //[pointAnnotationArray release];  
                         
 					}
 					else {
