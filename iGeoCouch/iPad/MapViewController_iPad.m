@@ -70,52 +70,48 @@
  
     [super showCouchList:sender];
     
-    
-    if (self.couchListPVC) {
-        // dismiss or show
-        if (self.couchListPVC.isPopoverVisible) {
-            [self.couchListPVC dismissPopoverAnimated:YES];
-            NSLog(@"dismissed couchListPVC");
-            return;
-        }
+    if (self.couchListPVC.isPopoverVisible) {
         
-        else {
-            
-            // reset it?
-            NSLog(@"couchListPVC already exists");
-        }
+        [self.couchListPVC dismissPopoverAnimated:YES];
+        NSLog(@"dismissed couchListPVC");
         
     }
+
     else {
 
-        NSLog(@"couchListPVC does not exist");
+        if (!self.couchListPVC) {
+            
+            NSLog(@"couchListPVC does not exist");
+            
+            CouchListViewController *couchListVC = [[CouchListViewController alloc] initWithNibName:@"CouchListViewController" bundle:nil];
+            
+            // pass the array loaded from the plist in super to be the datasource
+            couchListVC.couchSourceList = self.couchSourceList;
+            
+            couchListVC.title = @"GeoCouch Data Sources";
+            
+            couchListVC.delegate = self;
+            
+            couchListVC.currentCouchSource = self.currentCouchSource;
+            
+            CGSize couchPopoverSize = CGSizeMake(320.0, 550.0);
+            
+            couchListVC.contentSizeForViewInPopover = couchPopoverSize;
+            
+            UIPopoverController *couchPopover = [[UIPopoverController alloc] initWithContentViewController:couchListVC];
+            
+            [couchListVC release];
+            
+            self.couchListPVC = couchPopover;
+            
+            [couchPopover release];
+        }
         
-        CouchListViewController *couchListVC = [[CouchListViewController alloc] initWithNibName:@"CouchListViewController" bundle:nil];
-        
-        // pass the array loaded from the plist in super to be the datasource
-        couchListVC.couchSourceList = self.couchSourceList;
-        
-        couchListVC.title = @"GeoCouch Data Sources";
-        
-        couchListVC.delegate = self;
-        
-        couchListVC.currentCouchSource = self.currentCouchSource;
-        
-        CGSize couchPopoverSize = CGSizeMake(320.0, 550.0);
-        
-        couchListVC.contentSizeForViewInPopover = couchPopoverSize;
-        
-        UIPopoverController *couchPopover = [[UIPopoverController alloc] initWithContentViewController:couchListVC];
-        
-        [couchListVC release];
-        
-        self.couchListPVC = couchPopover;
-
-        [couchPopover release];
+        [self.couchListPVC presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
         
     }
     
-    [self.couchListPVC presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    
     
 }
 

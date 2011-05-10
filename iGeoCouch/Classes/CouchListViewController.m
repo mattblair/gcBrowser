@@ -61,7 +61,7 @@
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
     
-    self.couchSourceList = nil; // here, or in memory warning?
+    self.couchSourceList = nil; // here, or better to do it in memory warning?
     
     
 }
@@ -69,6 +69,9 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    [self.tableView reloadData]; // to pick up changes made elsewhere, i.e. by changing lists in settings
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -208,14 +211,13 @@
     
     if (indexPath.row != previousSelected) {
         
-        // update the selection in table and reload -- will this even be seen?
+        // update the selection in table and reload 
         
-        self.currentCouchSource = indexPath.row;
+        self.currentCouchSource = indexPath.row; 
         
-        [self.tableView reloadData];
+        [self.tableView reloadData]; // will this even be seen? or just do it in viewWillAppear?
         
-        
-        // pass the value back to the currentCouchSource property of Map VC and fetch the map
+        // pass the value back to MapVC, where it sets its currentCouchSource property and fetches map points
         
         [self.delegate couchListViewController:self didSelectDatasource:YES atIndex:indexPath.row];
         
