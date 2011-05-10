@@ -77,7 +77,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C95CBB5E136F453300C49BF2 /* gcBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gcBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C95CBB5E136F453300C49BF2 /* gcBrowserδ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "gcBrowserδ.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C95CBB62136F453300C49BF2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C95CBB64136F453300C49BF2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C95CBB66136F453300C49BF2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -211,7 +211,7 @@
 		C95CBB5F136F453300C49BF2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C95CBB5E136F453300C49BF2 /* gcBrowser.app */,
+				C95CBB5E136F453300C49BF2 /* gcBrowserδ.app */,
 				C95CBB8C136F453300C49BF2 /* gcBrowserTests.octest */,
 			);
 			name = Products;
@@ -430,7 +430,7 @@
 			);
 			name = gcBrowser;
 			productName = iGeoCouch;
-			productReference = C95CBB5E136F453300C49BF2 /* gcBrowser.app */;
+			productReference = C95CBB5E136F453300C49BF2 /* gcBrowserδ.app */;
 			productType = "com.apple.product-type.application";
 		};
 		C95CBB8B136F453300C49BF2 /* gcBrowserTests */ = {
@@ -615,10 +615,120 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		C9322E501378E3FC00A66F8B /* Adhoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				BUILD_SPECIFIC_BUNDLE_ID = com.elsewiseapps.gcbrowser.beta;
+				BUILD_SPECIFIC_DISPLAY_NAME = "gcBrowserβ";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Adhoc;
+		};
+		C9322E511378E3FC00A66F8B /* Adhoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iGeoCouch/gcBrowser-Prefix.pch";
+				INFOPLIST_FILE = "iGeoCouch/gcBrowser-Info.plist";
+				PRODUCT_NAME = "gcBrowserβ";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Adhoc;
+		};
+		C9322E521378E3FC00A66F8B /* Adhoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/iGeoCouch.app/iGeoCouch";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iGeoCouchTests/gcBrowserTests-Prefix.pch";
+				INFOPLIST_FILE = "iGeoCouchTests/gcBrowserTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = gcBrowserTests;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Adhoc;
+		};
+		C9322E531378E40700A66F8B /* AppStoreDistribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				BUILD_SPECIFIC_BUNDLE_ID = com.elsewiseapps.gcbrowser;
+				BUILD_SPECIFIC_DISPLAY_NAME = gcBrowser;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = AppStoreDistribution;
+		};
+		C9322E541378E40700A66F8B /* AppStoreDistribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iGeoCouch/gcBrowser-Prefix.pch";
+				INFOPLIST_FILE = "iGeoCouch/gcBrowser-Info.plist";
+				PRODUCT_NAME = gcBrowser;
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = AppStoreDistribution;
+		};
+		C9322E551378E40700A66F8B /* AppStoreDistribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/iGeoCouch.app/iGeoCouch";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iGeoCouchTests/gcBrowserTests-Prefix.pch";
+				INFOPLIST_FILE = "iGeoCouchTests/gcBrowserTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = gcBrowserTests;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = AppStoreDistribution;
+		};
 		C95CBB9E136F453300C49BF2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				BUILD_SPECIFIC_BUNDLE_ID = com.elsewiseapps.gcbrowser.debug;
+				BUILD_SPECIFIC_DISPLAY_NAME = "gcBrowserδ";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -637,6 +747,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				BUILD_SPECIFIC_BUNDLE_ID = com.elsewiseapps.gcbrowser;
+				BUILD_SPECIFIC_DISPLAY_NAME = gcBrowser;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
@@ -658,7 +770,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iGeoCouch/gcBrowser-Prefix.pch";
 				INFOPLIST_FILE = "iGeoCouch/gcBrowser-Info.plist";
-				PRODUCT_NAME = gcBrowser;
+				PRODUCT_NAME = "gcBrowserδ";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -667,6 +779,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUILD_SPECIFIC_BUNDLE_ID = com.elsewiseapps.gcbrowser.release;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iGeoCouch/gcBrowser-Prefix.pch";
@@ -729,6 +842,8 @@
 			buildConfigurations = (
 				C95CBB9E136F453300C49BF2 /* Debug */,
 				C95CBB9F136F453300C49BF2 /* Release */,
+				C9322E531378E40700A66F8B /* AppStoreDistribution */,
+				C9322E501378E3FC00A66F8B /* Adhoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -738,6 +853,8 @@
 			buildConfigurations = (
 				C95CBBA1136F453300C49BF2 /* Debug */,
 				C95CBBA2136F453300C49BF2 /* Release */,
+				C9322E541378E40700A66F8B /* AppStoreDistribution */,
+				C9322E511378E3FC00A66F8B /* Adhoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -747,6 +864,8 @@
 			buildConfigurations = (
 				C95CBBA4136F453300C49BF2 /* Debug */,
 				C95CBBA5136F453300C49BF2 /* Release */,
+				C9322E551378E40700A66F8B /* AppStoreDistribution */,
+				C9322E521378E3FC00A66F8B /* Adhoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
