@@ -14,7 +14,7 @@
     
     NSArray *couchSourceList;
     id <CouchListDelegate> delegate;
-    NSUInteger currentCouchSource;
+    NSUInteger currentCouchSourceIndex;
     
 }
 
@@ -22,7 +22,7 @@
 
 @property (nonatomic, assign) id <CouchListDelegate> delegate;
 
-@property (nonatomic) NSUInteger currentCouchSource;
+@property (nonatomic) NSUInteger currentCouchSourceIndex;
 
 @end
 

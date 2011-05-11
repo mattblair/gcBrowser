@@ -37,7 +37,7 @@
 	BOOL locationReallyEnabled;  // to handle CL behavior in iOS 4.1
 	NSMutableArray *pointsFoundInRegion; 
     
-    NSUInteger currentCouchSource;
+    NSUInteger currentCouchSourceIndex;
     NSArray *couchSourceList; // make mutable for editing? Or just nil and reload?
     GeoCouchDatabaseDefinition *currentDatabaseDefinition;
     
@@ -65,7 +65,7 @@
 
 // Database list
 
-@property (nonatomic) NSUInteger currentCouchSource;  // to be replaced
+@property (nonatomic) NSUInteger currentCouchSourceIndex; 
 @property (nonatomic, retain) NSArray *couchSourceList;
 @property (nonatomic, retain) GeoCouchDatabaseDefinition *currentDatabaseDefinition;
 

@@ -13,7 +13,7 @@
 @implementation CouchListViewController
 
 @synthesize couchSourceList;
-@synthesize currentCouchSource;
+@synthesize currentCouchSourceIndex;
 @synthesize delegate;
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -131,7 +131,7 @@
     
     // indicate current selection
     
-    if ([self currentCouchSource] == indexPath.row) {
+    if ([self currentCouchSourceIndex] == indexPath.row) {
         
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
         
@@ -207,17 +207,17 @@
     // an example of reloading only changed rows -- but seems like overkill for a short list:
     // http://my.safaribooksonline.com/book/programming/iphone/9781430230212/popovers/128
     
-    NSUInteger previousSelected = self.currentCouchSource;
+    NSUInteger previousSelected = self.currentCouchSourceIndex;
     
     if (indexPath.row != previousSelected) {
         
         // update the selection in table and reload 
         
-        self.currentCouchSource = indexPath.row; 
+        self.currentCouchSourceIndex = indexPath.row; 
         
         [self.tableView reloadData]; // will this even be seen? or just do it in viewWillAppear?
         
-        // pass the value back to MapVC, where it sets its currentCouchSource property and fetches map points
+        // pass the value back to MapVC, where it sets its currentCouchSourceIndex property and fetches map points
         
         [self.delegate couchListViewController:self didSelectDatasource:YES atIndex:indexPath.row];
         

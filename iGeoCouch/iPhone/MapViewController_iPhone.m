@@ -138,7 +138,7 @@
     
     couchListVC.delegate = self;
     
-    couchListVC.currentCouchSource = self.currentCouchSource;
+    couchListVC.currentCouchSourceIndex = self.currentCouchSourceIndex;
     
     [self presentModalViewController:couchListVC animated:YES];
 
@@ -180,7 +180,7 @@
         pointVC.theDocID = [selectedPoint pointID];
         
         // deletable
-        //pointVC.databaseURL = [[self.couchSourceList objectAtIndex:[self currentCouchSource]] 
+        //pointVC.databaseURL = [[self.couchSourceList objectAtIndex:[self currentCouchSourceIndex]] 
         //                       objectForKey:kCouchSourceDatabaseURLKey];
         
         pointVC.currentDatabaseDefinition = self.currentDatabaseDefinition;

@@ -96,7 +96,7 @@
             
             couchListVC.delegate = self;
             
-            couchListVC.currentCouchSource = self.currentCouchSource;
+            couchListVC.currentCouchSourceIndex = self.currentCouchSourceIndex;
             
             CGSize couchPopoverSize = CGSizeMake(320.0, 550.0);
             
@@ -234,7 +234,7 @@
             pointDetailVC.fetchDetailsOnView = NO; // might just be glancing at popover
             
             // delete after testing
-            //pointDetailVC.databaseURL = [[self.couchSourceList objectAtIndex:[self currentCouchSource]] 
+            //pointDetailVC.databaseURL = [[self.couchSourceList objectAtIndex:[self currentCouchSourceIndex]] 
             //                             objectForKey:kCouchSourceDatabaseURLKey];
             
             pointDetailVC.currentDatabaseDefinition = self.currentDatabaseDefinition;

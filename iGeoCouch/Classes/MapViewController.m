@@ -46,7 +46,7 @@
 
 @synthesize infoButton, refreshButton, locationButton, addButton, couchListButton, settingsButton;
 @synthesize theMapView, locationManager, locationReallyEnabled, pointsFoundInRegion, mapPointsRequest;
-@synthesize couchSourceList, currentCouchSource, currentDatabaseDefinition;
+@synthesize couchSourceList, currentCouchSourceIndex, currentDatabaseDefinition;
 
 // Core Data - can delete if not used
 @synthesize fetchedResultsController=fetchedResultsController_, managedObjectContext=managedObjectContext_;
@@ -82,7 +82,7 @@
     
 
     // last viewed should be read-from/persist-to user defaults
-    self.currentCouchSource = 0; 
+    self.currentCouchSourceIndex = 0; 
     
     // temporary method to setup database definition - update when switching to JSON
     
@@ -251,7 +251,7 @@
 - (void)couchListViewController:(CouchListViewController *)couchListViewController didSelectDatasource:(BOOL)didSelect atIndex:(NSUInteger)datasourceIndex {
     
     if (didSelect) {
-        self.currentCouchSource = datasourceIndex;
+        self.currentCouchSourceIndex = datasourceIndex;
         
         [self reloadDatabaseDefinition];
         
@@ -265,7 +265,7 @@
 // may be replaced/dratsically altered on switch to JSON
 - (void)reloadDatabaseDefinition {
     
-    NSDictionary *defDict = [self.couchSourceList objectAtIndex:[self currentCouchSource]];
+    NSDictionary *defDict = [self.couchSourceList objectAtIndex:[self currentCouchSourceIndex]];
     
     // set properties for newly select database def -- object types in flux until RC
     
@@ -353,11 +353,15 @@
     NSNumber *westLongitude = [NSNumber numberWithDouble:region.center.longitude - region.span.longitudeDelta/2.0];
     NSNumber *eastLongitude = [NSNumber numberWithDouble:region.center.longitude + region.span.longitudeDelta/2.0];
 	
-    NSString *databaseURL = [[self.couchSourceList objectAtIndex:[self currentCouchSource]] 
-                             objectForKey:kCouchSourceDatabaseURLKey];
+    //NSString *databaseURL = [[self.couchSourceList objectAtIndex:[self currentCouchSourceIndex]] 
+    //                         objectForKey:kCouchSourceDatabaseURLKey];
     
-    NSString *pathForMapSearch = [[self.couchSourceList objectAtIndex:[self currentCouchSource]] 
-                                  objectForKey:kCouchSourcePathKey];
+    NSString *databaseURL = self.currentDatabaseDefinition.databaseURL;
+    
+    //NSString *pathForMapSearch = [[self.couchSourceList objectAtIndex:[self currentCouchSourceIndex]] 
+    //                              objectForKey:kCouchSourcePathKey];
+    
+    NSString *pathForMapSearch = self.currentDatabaseDefinition.pathForBrowserDesignDoc;
     
 	//construct the URL -- trim the floats?
     NSString *urlString = [[NSString alloc] initWithFormat:@"%@%@%@,%@,%@,%@", 
@@ -761,7 +765,9 @@
 	newRegion.span.longitudeDelta = kDefaultRegionLongitudeDelta;
     */
 	
-    NSDictionary *currentSource = [self.couchSourceList objectAtIndex:[self currentCouchSource]];
+    // old way
+    /*
+    NSDictionary *currentSource = [self.couchSourceList objectAtIndex:[self currentCouchSourceIndex]];
     
     NSLog(@"setInitialMapRegion: %@", currentSource);
     
@@ -772,7 +778,9 @@
 	
 	newRegion.span.latitudeDelta = [[initialRegion objectForKey:kCouchSourceLatitudeDeltaKey] doubleValue];
 	newRegion.span.longitudeDelta = [[initialRegion objectForKey:kCouchSourceLongitudeDeltaKey] doubleValue];
+    */
     
+    newRegion = self.currentDatabaseDefinition.initialRegion;
 	
 	// correct the aspect ratio -- does not work well across devices and orientations yet
 	MKCoordinateRegion fitRegion = [theMapView regionThatFits:newRegion];
