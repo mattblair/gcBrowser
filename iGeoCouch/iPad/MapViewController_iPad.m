@@ -10,6 +10,7 @@
 #import "CouchListViewController.h"
 #import "GeoCouchAnnotation.h"
 #import "PointDetailTableViewController.h"
+#import "gcBrowserConstants.h"
 
 
 @implementation MapViewController_iPad
@@ -189,9 +190,18 @@
                 
                 PointDetailTableViewController *pointVC = [[PointDetailTableViewController alloc] initWithNibName:@"PointDetailTableViewController" bundle:nil];
                 
-                pointVC.theDocID = [selectedPoint pointID];
                 
-                CGSize mapPopoverSize = CGSizeMake(320.0, 350.0);
+                // if you keep this approach, switch keys to constants, and explicitly alloc/init/release
+                NSDictionary *annotationDict = [NSDictionary dictionaryWithObjectsAndKeys:
+                                                [selectedPoint title],@"title",
+                                                [selectedPoint subtitle],@"subtitle",
+                                                [[selectedPoint latitude] stringValue],@"latitude",
+                                                [[selectedPoint longitude] stringValue],@"longitude",
+                                                nil];
+                
+                pointVC.pointDictionary = annotationDict;
+                
+                CGSize mapPopoverSize = CGSizeMake(320.0, 220.0);
                 
                 pointVC.contentSizeForViewInPopover = mapPopoverSize;
                 
@@ -204,6 +214,29 @@
                 [pointPopover release];
                 
             }
+            
+            // pass the new information -- tis kind of ugly at the moment?
+            
+            PointDetailTableViewController *pointDetailVC = (PointDetailTableViewController *)[self.mapCalloutPVC contentViewController];
+            
+            // if you keep this approach, switch keys to constants, and explicitly alloc/init/release
+            NSDictionary *annotationDict = [NSDictionary dictionaryWithObjectsAndKeys:
+                                            [selectedPoint title],@"title",
+                                            [selectedPoint subtitle],@"subtitle",
+                                            [[selectedPoint latitude] stringValue],@"latitude",
+                                            [[selectedPoint longitude] stringValue],@"longitude",
+                                            nil];
+            
+            pointDetailVC.pointDictionary = annotationDict;
+            
+            pointDetailVC.theDocID = [selectedPoint pointID];
+            
+            pointDetailVC.fetchDetailsOnView = NO; // might just be glancing at popover
+            
+            pointDetailVC.databaseURL = [[self.couchSourceList objectAtIndex:[self currentCouchSource]] 
+                                         objectForKey:kCouchSourceDatabaseURLKey];
+            
+            // needs to be offest -- try x-10 and y+10 for starters
             
             [self.mapCalloutPVC presentPopoverFromRect:view.bounds inView:view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
             

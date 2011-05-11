@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C91C9252137A1E27003DEA71 /* GeoCouchDatabaseDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = C91C9251137A1E27003DEA71 /* GeoCouchDatabaseDefinition.m */; };
 		C92B3F611379815900FEF1A4 /* PointDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C92B3F5F1379815900FEF1A4 /* PointDetailTableViewController.m */; };
 		C92B3F621379815900FEF1A4 /* PointDetailTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C92B3F601379815900FEF1A4 /* PointDetailTableViewController.xib */; };
 		C95CBB63136F453300C49BF2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C95CBB62136F453300C49BF2 /* UIKit.framework */; };
@@ -80,6 +81,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C91C9250137A1E27003DEA71 /* GeoCouchDatabaseDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeoCouchDatabaseDefinition.h; sourceTree = "<group>"; };
+		C91C9251137A1E27003DEA71 /* GeoCouchDatabaseDefinition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeoCouchDatabaseDefinition.m; sourceTree = "<group>"; };
 		C92B3F5E1379815900FEF1A4 /* PointDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PointDetailTableViewController.h; path = Classes/PointDetailTableViewController.h; sourceTree = "<group>"; };
 		C92B3F5F1379815900FEF1A4 /* PointDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PointDetailTableViewController.m; path = Classes/PointDetailTableViewController.m; sourceTree = "<group>"; };
 		C92B3F601379815900FEF1A4 /* PointDetailTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PointDetailTableViewController.xib; path = Classes/PointDetailTableViewController.xib; sourceTree = "<group>"; };
@@ -404,6 +407,8 @@
 				C9FE467C1370A4C700025503 /* CouchSources.plist */,
 				C9FE46841370C31F00025503 /* gcBrowserConstants.h */,
 				C9FE46851370C31F00025503 /* gcBrowserConstants.m */,
+				C91C9250137A1E27003DEA71 /* GeoCouchDatabaseDefinition.h */,
+				C91C9251137A1E27003DEA71 /* GeoCouchDatabaseDefinition.m */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -571,6 +576,7 @@
 				C996FCED1378DCC000C2138C /* gcBrowserAppDelegate.m in Sources */,
 				C9F8F45B1378F97E0071238F /* gcBrowser.xcdatamodeld in Sources */,
 				C92B3F611379815900FEF1A4 /* PointDetailTableViewController.m in Sources */,
+				C91C9252137A1E27003DEA71 /* GeoCouchDatabaseDefinition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

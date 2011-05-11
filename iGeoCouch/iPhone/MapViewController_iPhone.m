@@ -9,6 +9,7 @@
 #import "MapViewController_iPhone.h"
 #import "GeoCouchAnnotation.h"
 #import "PointDetailTableViewController.h"
+#import "gcBrowserConstants.h"
 
 
 @implementation MapViewController_iPhone
@@ -172,10 +173,25 @@
 	
     
     // class-check to guard against random error where pointID is returning a random chunk of memory
+    // only seen twice. See ticket 32
     if ([[selectedPoint pointID] isKindOfClass:[NSString class]]) {
         PointDetailTableViewController *pointVC = [[PointDetailTableViewController alloc] initWithNibName:@"PointDetailTableViewController" bundle:nil];
         
         pointVC.theDocID = [selectedPoint pointID];
+        pointVC.databaseURL = [[self.couchSourceList objectAtIndex:[self currentCouchSource]] 
+                               objectForKey:kCouchSourceDatabaseURLKey];
+        
+        // if you keep this approach, switch keys to constants, and explicitly alloc/init/release
+        NSDictionary *annotationDict = [NSDictionary dictionaryWithObjectsAndKeys:
+                                        [selectedPoint title],@"title",
+                                        [selectedPoint subtitle],@"subtitle",
+                                        [[selectedPoint latitude] stringValue],@"latitude",
+                                        [[selectedPoint longitude] stringValue],@"longitude",
+                                        nil];
+        
+        pointVC.pointDictionary = annotationDict;
+        
+        pointVC.fetchDetailsOnView = YES;  // include include_docs was used in geoquery
         
         [self.navigationController pushViewController:pointVC animated:YES];
         

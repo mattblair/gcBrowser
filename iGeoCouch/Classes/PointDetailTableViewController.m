@@ -7,11 +7,14 @@
 //
 
 #import "PointDetailTableViewController.h"
-
+#import "gcBrowserConstants.h"
+#import "Reachability.h"
+#import "NSString+SBJSON.h"
 
 @implementation PointDetailTableViewController
 
-@synthesize theDocID;
+@synthesize databaseURL, theDocID, lastRevID, pointDictionary, sortedRowNames;
+@synthesize fetchDetailsOnView, theDocumentRequest;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -25,7 +28,15 @@
 - (void)dealloc
 {
     
-    [theDocID dealloc];
+    [databaseURL release]; // might be replaced if database def is used instead
+    [sortedRowNames release];
+    
+    [theDocID release];
+    [lastRevID release];
+
+    // also add to mem warning?
+    [pointDictionary release]; 
+    
     
     [super dealloc];
 }
@@ -36,6 +47,7 @@
     [super didReceiveMemoryWarning];
     
     // Release any cached data, images, etc that aren't in use.
+    
 }
 
 #pragma mark - View lifecycle
@@ -50,6 +62,10 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
+    
+    // set the default order of the rows -- use constants if you keep this method
+    self.sortedRowNames = [NSArray arrayWithObjects:@"title",@"subtitle", @"latitude", @"longitude", nil];
+    
 }
 
 - (void)viewDidUnload
@@ -62,6 +78,18 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    // load currently available values
+    [self.tableView reloadData];
+    
+    // start the process of fetching the rest of the doc, if needed
+
+    if (fetchDetailsOnView) {
+        
+        [self fetchFullDocument];
+        
+    }
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -72,6 +100,8 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    
+    [self killRequest];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -89,16 +119,14 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Hardcoded section count
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Hardcoded row count
     // Return the number of rows in the section.
-    return 1;
+    return [self.pointDictionary count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -107,12 +135,17 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
     }
     
     // Configure the cell...
     
-    cell.textLabel.text = self.theDocID;
+    NSString *keyName = [self.sortedRowNames objectAtIndex:indexPath.row];
+    
+    cell.textLabel.text = [keyName capitalizedString];
+    
+    // check for NSString?
+    cell.detailTextLabel.text = [[self.pointDictionary objectForKey:keyName] description]; 
     
     return cell;
 }
@@ -170,6 +203,166 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      [detailViewController release];
      */
+}
+
+#pragma mark - Requesting Data from Couch
+
+- (void)fetchFullDocument {
+    
+    // Check Reachability first
+    
+    NetworkStatus status = [[Reachability reachabilityForInternetConnection] currentReachabilityStatus];
+    
+    
+    if (status == kReachableViaWiFi || status == kReachableViaWWAN) { 
+        
+        
+        // NSLog(@"TDVC: Internet Reachable. Preparing request for details...");
+        
+        // Update UI
+        
+        //fetchingLabel.text = @"Fetching Images...";
+        
+        //[fetchingSpinner startAnimating];
+        
+        NSString *urlString = [NSString stringWithFormat:@"%@/%@", self.databaseURL, self.theDocID];
+        
+        NSLog(@"Generated Photo Request URL is: %@", urlString);
+        
+        NSURL *theURL = [NSURL URLWithString:urlString];
+        
+        self.theDocumentRequest = [ASIHTTPRequest requestWithURL:theURL];
+        
+        [self.theDocumentRequest setDelegate:self];
+        
+        [self.theDocumentRequest setDidFinishSelector:@selector(documentRequestFinished:)];
+        
+        [self.theDocumentRequest setDidFailSelector:@selector(documentRequestFailed:)];
+                
+        [self.theDocumentRequest startAsynchronous];
+        
+    }
+    else {
+        // no connection
+        NSLog(@"Detail Request won't be made: no connection.");
+        
+        // Update UI
+        //fetchingLabel.text = @"Images not available. (Offline)";
+        //[fetchingSpinner stopAnimating];
+    }
+
+    
+    
+}
+
+- (void)documentRequestFinished:(ASIHTTPRequest *)request {
+
+    
+    NSLog(@"Document Request HTTP Status code was: %d", [request responseStatusCode]);
+	NSLog(@"Document Request response was: %@", [request responseString]);
+    
+    if ([request responseStatusCode] == 200) {
+        
+        NSString *responseString = [request responseString];
+        
+        if ([[responseString JSONValue] isKindOfClass:[NSDictionary class]]) {
+            
+            NSDictionary *documentDict = [responseString JSONValue];
+ 
+            // quick and dirty way to show them all:
+            //self.pointDictionary = documentDict;
+            //self.sortedRowNames = [documentDict allKeys];
+            
+            
+            // parsing the dictionary -- what really needs to happen:
+            
+            // All valid document requests return an id, else it wasn't found.
+            if ([documentDict objectForKey:@"_id"]) {
+                
+                // set aside _id and _rev
+                self.theDocID = [documentDict objectForKey:@"_id"];
+                
+                self.lastRevID = [documentDict objectForKey:@"_rev"];
+                
+                // put strings for the rest of keys into a dictionary to display
+                
+                NSMutableDictionary *theFullDocument = [[NSMutableDictionary alloc] initWithCapacity:10];
+                NSArray *receivedDocumentKeys = [documentDict allKeys];
+                
+                for (NSString *theKey in receivedDocumentKeys) {
+                    
+                    if (!([theKey isEqualToString:@"_id"] || [theKey isEqualToString:@"_rev"])) {
+                        // add to theFullDocument
+                        
+                        // handle strings, numbers, dictionaries, arrays, etc.
+                    }
+                    
+                    
+                }
+                
+                // reset value of pointDictionary and sortedRowNames
+                
+                self.pointDictionary = theFullDocument;
+                self.sortedRowNames = [documentDict allKeys]; // or read from database def, if defined there
+                
+                [theFullDocument release];
+
+                
+            }
+            else { // A Couch '404' looks like: {"error":"not_found","reason":"missing"}
+                
+                self.pointDictionary = documentDict; 
+                self.sortedRowNames = [NSArray arrayWithObjects:@"error", @"reason", nil];
+                            
+            }
+         
+            
+            // reload table
+            
+            [self.tableView reloadData];
+        }
+        
+        else {
+            
+            // update UI to say document fetch was not successful
+            
+            NSLog(@"Unexpected result: retrieved document was not a dictionary.");
+            
+        }
+    }
+    
+    // Update fetch-related UI
+    
+    self.theDocumentRequest = nil;
+    
+}
+    
+- (void)documentRequestFailed:(ASIHTTPRequest *)request {
+
+    NSLog(@"Document Request failed with HTTP status code : %d", [request responseStatusCode]);
+	NSLog(@"Document Request failed with response: %@", [request responseString]);
+    
+    // update UI to indicate failure
+    
+    self.theDocumentRequest = nil;
+    
+}
+
+- (void)killRequest {
+    
+    //
+    
+    if ([self.theDocumentRequest inProgress]) {
+        
+        [self.theDocumentRequest cancel];
+        
+        // update UI in case this is called by Reachability failure.
+        
+        
+        self.theDocumentRequest = nil; // does documentRequestFailed handle this?
+        
+    }
+
 }
 
 @end

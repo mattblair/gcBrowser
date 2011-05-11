@@ -392,13 +392,13 @@
 		
 		// parse the JSON
 		
-		NSString *reseponseString = [request responseString];
+		NSString *responseString = [request responseString];
 		
-		if ([[reseponseString JSONValue] isKindOfClass:[NSDictionary class]]) {
+		if ([[responseString JSONValue] isKindOfClass:[NSDictionary class]]) {
 			
 			NSLog(@"Top Level is a dictionary");
 			
-			NSDictionary *pointsJSON = [reseponseString JSONValue];
+			NSDictionary *pointsJSON = [responseString JSONValue];
 			
 			// test if the rows key is an array
 			
