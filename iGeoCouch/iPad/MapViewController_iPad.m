@@ -259,7 +259,7 @@
 }
 
 
-// not using callout or accessory
+// This code assumes a callout, but it looks weird, to have a popover coming from a callout
 
 /*
 

@@ -16,6 +16,10 @@
 #pragma mark - 
 #pragma mark Constants
 
+
+// legacy constants: most of this stuff is overridden by now
+// this section should probably be weeded out
+
 // region for default view
 #define kDefaultRegionLatitude 45.518978
 #define kDefaultRegionLongitude -122.676001
@@ -273,14 +277,30 @@
     
     self.currentDatabaseDefinition.includeDocs = NO; // not implemented yet
     
-    // initial region -- it expects NSNumbers in an NSDictionary at the moment
+    // Set initialRegion conditionally. There are default values for span deltas.
     
-    self.currentDatabaseDefinition.initialRegion = [NSDictionary dictionaryWithObjectsAndKeys:
-                            [defDict objectForKey:kCouchSourceLatitudeKey], kCouchSourceLatitudeKey,
-                            [defDict objectForKey:kCouchSourceLongitudeKey], kCouchSourceLongitudeKey,
-                            [defDict objectForKey:kCouchSourceLatitudeKey], kCouchSourceLatitudeKey,
-                            [defDict objectForKey:kCouchSourceLongitudeKey], kCouchSourceLongitudeKey,
-                            nil];
+    CLLocationCoordinate2D newCentroid = CLLocationCoordinate2DMake(
+                                [[defDict objectForKey:kCouchSourceLatitudeKey] doubleValue], 
+                                [[defDict objectForKey:kCouchSourceLongitudeKey] doubleValue]);
+    
+    MKCoordinateSpan newSpan;
+    
+    // Should check value, not just class. Also, check whether it's in a range?
+    if ([[defDict objectForKey:kCouchSourceLatitudeDeltaKey] isKindOfClass:[NSNumber class]] && 
+        [[defDict objectForKey:kCouchSourceLongitudeDeltaKey] isKindOfClass:[NSNumber class]]) {
+        
+        newSpan = MKCoordinateSpanMake(
+                            [[defDict objectForKey:kCouchSourceLatitudeDeltaKey] doubleValue], 
+                            [[defDict objectForKey:kCouchSourceLongitudeDeltaKey] doubleValue]);
+        
+    }
+    else { // defaults set here, overriding object's init
+        
+        newSpan = MKCoordinateSpanMake(kCurrentLocationLatitudeDelta, kCurrentLocationLongitudeDelta);
+    }
+    
+    self.currentDatabaseDefinition.initialRegion = MKCoordinateRegionMake(newCentroid, newSpan);
+    
     
 #warning Incomplete: doesn't read all the properties yet, but I'm waiting until JSON conversion to finish it
 }
@@ -454,8 +474,8 @@
 						
 						NSLog(@"Dictionary for object 0: %@", [[pointsArray objectAtIndex:0] description]);
 						
-						// generic gcBrowser format is:
-						// keys: bbox, id, value { title, subtitle }
+						// emitted by standard gcBrowser design doc:
+						// keys: bbox, id, value: { title, subtitle }
 						
 						
 						/*
@@ -495,8 +515,8 @@
                         }
                         
 						GeoCouchAnnotation *ga = nil;
-						
-						// loop and add
+                        
+						// loop and add annotations for each point returned
 						
 						for (NSDictionary *aPoint in pointsArray) {
 							
@@ -504,9 +524,13 @@
 							
 							ga = [[GeoCouchAnnotation alloc] init];
 							
-							[ga setTitle:[[aPoint valueForKey:@"value"] valueForKey:@"title"]];
+							//[ga setTitle:[[aPoint valueForKey:@"value"] valueForKey:@"title"]];
+                            [ga setTitle:[[aPoint valueForKey:@"value"] 
+                                          valueForKey:self.currentDatabaseDefinition.keyForTitle]];
 							
-							[ga setSubtitle:[[aPoint valueForKey:@"value"] valueForKey:@"subtitle"]];
+							//[ga setSubtitle:[[aPoint valueForKey:@"value"] valueForKey:@"subtitle"]];
+                            [ga setSubtitle:[[aPoint valueForKey:@"value"] 
+                                             valueForKey:self.currentDatabaseDefinition.keyForSubtitle]];
 							
 							// make this less ugly? The problem is it's originally an NSString
 							[ga setLatitude:[NSNumber numberWithDouble:[[[aPoint valueForKey:@"bbox"] objectAtIndex:1] doubleValue]]];

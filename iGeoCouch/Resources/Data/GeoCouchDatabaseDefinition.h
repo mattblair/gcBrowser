@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <MapKit/MapKit.h>
 
 @interface GeoCouchDatabaseDefinition : NSObject {
     
@@ -20,8 +20,8 @@
     BOOL includeDocs; // default NO
     BOOL local; // not used...yet...
     
-    
-    NSDictionary *initialRegion; 
+    //NSDictionary *initialRegion; 
+    MKCoordinateRegion initialRegion;
     NSArray *keysToDisplay;     
     NSString *keyForTitle;
     NSString *keyForSubtitle; 
@@ -49,9 +49,9 @@
 
 // Display
 
-// Use NSDictionary with NSNumbers holding doubles for easy JSON to/fro?
+// Convert to NSDictionary with NSNumbers holding doubles for easy JSON i/o with
 // keys: latitude, longitude, latitudeDelta, longitudeDelta
-@property (nonatomic, retain) NSDictionary *initialRegion;
+@property (nonatomic) MKCoordinateRegion initialRegion;
 
 // Order matters. This will be used to iterate through keys for display.
 @property (nonatomic, retain) NSArray *keysToDisplay; 

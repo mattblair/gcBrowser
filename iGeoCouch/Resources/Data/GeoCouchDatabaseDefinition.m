@@ -7,6 +7,7 @@
 //
 
 #import "GeoCouchDatabaseDefinition.h"
+#import "gcBrowserConstants.h"
 
 @implementation GeoCouchDatabaseDefinition
 
@@ -26,6 +27,23 @@
         self.allowArbitraryKeys = YES;
         self.allowAttachments = NO;
         
+        self.keyForTitle = @"title";
+        self.keyForSubtitle = @"subtitle";
+        
+        // default inital region for MKMapView
+        
+        // Approximately walking distance in most places.
+        // Intentionally small for big datasets.
+        // NOTE: these are not used at the moment.
+        // See reloadDatabaseDefinition of Map VC, where they are set currently.
+        initialRegion.span.latitudeDelta = 0.011;
+        initialRegion.span.longitudeDelta = 0.014;
+        
+        // Does it make sense to have a default centroid? 
+        // Seems like that would be useless given the close zoom
+        // Could calculate a centroid, but that could be problematic
+        // for a big dataset. Just make centroid required.
+        
     }
     
     return self;
@@ -40,7 +58,6 @@
     [databaseURL release];
     [pathForBrowserDesignDoc release];
     
-    [initialRegion release];
     [keysToDisplay release];
     [keyForTitle release];
     [keyForSubtitle release];
