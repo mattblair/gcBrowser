@@ -178,8 +178,12 @@
         PointDetailTableViewController *pointVC = [[PointDetailTableViewController alloc] initWithNibName:@"PointDetailTableViewController" bundle:nil];
         
         pointVC.theDocID = [selectedPoint pointID];
-        pointVC.databaseURL = [[self.couchSourceList objectAtIndex:[self currentCouchSource]] 
-                               objectForKey:kCouchSourceDatabaseURLKey];
+        
+        // deletable
+        //pointVC.databaseURL = [[self.couchSourceList objectAtIndex:[self currentCouchSource]] 
+        //                       objectForKey:kCouchSourceDatabaseURLKey];
+        
+        pointVC.currentDatabaseDefinition = self.currentDatabaseDefinition;
         
         // if you keep this approach, switch keys to constants, and explicitly alloc/init/release
         NSDictionary *annotationDict = [NSDictionary dictionaryWithObjectsAndKeys:

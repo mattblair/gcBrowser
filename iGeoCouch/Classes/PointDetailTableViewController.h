@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ASIHTTPRequest.h"
+#import "GeoCouchDatabaseDefinition.h"
 
 /*
 NOTE: I called this one PointDetailTableViewController because
@@ -20,23 +21,25 @@ it makes sense to go that route at some point in the future.
 @interface PointDetailTableViewController : UITableViewController {
     
     
-    NSString *databaseURL; // replace with DatabaseDefinition object, if you make one
+    GeoCouchDatabaseDefinition *currentDatabaseDefinition;
+    
     NSString *theDocID; // stored separately b/c not presented in UI
     NSString *lastRevID; // stored separately b/c not presented in UI
     NSDictionary *pointDictionary;
     NSArray *sortedRowNames;
     
-    // Defaults: 
+    // Defaults to use: 
     // YES on the iPhone, because they've already seen a callout, and this is shown as a full screen transition
     // NO on the iPad, because this is shown in a popover, and the user may only want a peek
-    // Exception: if the database is set to include documents in the geoquery, don't fetch again
+    // Exception: if the database def is set to include documents in the geoquery, don't fetch again
     BOOL fetchDetailsOnView; 
     
     ASIHTTPRequest *theDocumentRequest;
     
 }
 
-@property (nonatomic, retain) NSString *databaseURL;
+@property (nonatomic, retain) GeoCouchDatabaseDefinition *currentDatabaseDefinition;
+
 @property (nonatomic, retain) NSString *theDocID;
 @property (nonatomic, retain) NSString *lastRevID;
 @property (nonatomic, retain) NSDictionary *pointDictionary;

@@ -10,7 +10,9 @@
 #import <CoreData/CoreData.h>
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>  // needed to test if it's on before adding to map
+
 #import "CouchListViewController.h" // or just declare the protocol?
+#import "GeoCouchDatabaseDefinition.h"
 
 @class ASIHTTPRequest;
 @class Reachability;
@@ -37,6 +39,7 @@
     
     NSUInteger currentCouchSource;
     NSArray *couchSourceList; // make mutable for editing? Or just nil and reload?
+    GeoCouchDatabaseDefinition *currentDatabaseDefinition;
     
 	// Core Data
 @private
@@ -62,8 +65,10 @@
 
 // Database list
 
-@property (nonatomic) NSUInteger currentCouchSource;
+@property (nonatomic) NSUInteger currentCouchSource;  // to be replaced
 @property (nonatomic, retain) NSArray *couchSourceList;
+@property (nonatomic, retain) GeoCouchDatabaseDefinition *currentDatabaseDefinition;
+
 
 // Core Data
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
@@ -95,5 +100,7 @@
 - (IBAction)showNewPointEditor:(id)sender;
 
 - (void)couchListViewController:(CouchListViewController *)couchListViewController didSelectDatasource:(BOOL)didSelect atIndex:(NSUInteger)datasourceIndex;
+
+- (void)reloadDatabaseDefinition;
 
 @end

@@ -11,30 +11,20 @@
 
 @interface GeoCouchDatabaseDefinition : NSObject {
     
-    // Display
     NSString *name;
     NSString *collection;
-    
-    // Order matters. This will be used to iterate through keys for display.
-    NSArray *keysToDisplay; 
-    
-    // Use NSDictionary with NSNumbers holding doubles for easy JSON to/fro?
-    NSDictionary *initialRegion; 
-    
-    // keys for NSNumbers: latitude, longitude, latitudeDelta, longitudeDelta
     
     // fetching data
     NSString *databaseURL; // or use NSURL? which is easier elsewhere
     NSString *pathForBrowserDesignDoc; // if nil, flip includeDocs to YES
-    
     BOOL includeDocs; // default NO
-    
-    // usable if all docs included
-    NSString *keyForTitle;
-    NSString *keyForSubtitle; 
-    
     BOOL local; // not used...yet...
     
+    
+    NSDictionary *initialRegion; 
+    NSArray *keysToDisplay;     
+    NSString *keyForTitle;
+    NSString *keyForSubtitle; 
     
     // for databases that accept submissions
     BOOL writable;
@@ -44,5 +34,41 @@
     BOOL allowAttachments;
     
 }
+
+
+
+@property (nonatomic, retain) NSString *name;
+@property (nonatomic, retain) NSString *collection;
+
+// fetching data
+@property (nonatomic, retain) NSString *databaseURL; 
+@property (nonatomic, retain) NSString *pathForBrowserDesignDoc;
+@property (nonatomic) BOOL includeDocs;
+@property (nonatomic) BOOL local;
+
+
+// Display
+
+// Use NSDictionary with NSNumbers holding doubles for easy JSON to/fro?
+// keys: latitude, longitude, latitudeDelta, longitudeDelta
+@property (nonatomic, retain) NSDictionary *initialRegion;
+
+// Order matters. This will be used to iterate through keys for display.
+@property (nonatomic, retain) NSArray *keysToDisplay; 
+
+// used if include_docs is YES, instead of using a gcBrowser compatible design doc
+@property (nonatomic, retain) NSString *keyForTitle;
+@property (nonatomic, retain) NSString *keyForSubtitle;
+
+// for databases that accept submissions
+@property (nonatomic) BOOL writable;
+@property (nonatomic, retain) NSArray *requiredKeys;
+@property (nonatomic, retain) NSArray *desiredKeys;
+@property (nonatomic) BOOL allowArbitraryKeys;
+@property (nonatomic) BOOL allowAttachments;
+
+
+
+// add methods for toJSON and initFromJSON and then store initial region as MapKit natives?
 
 @end

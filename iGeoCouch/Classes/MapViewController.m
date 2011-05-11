@@ -42,7 +42,7 @@
 
 @synthesize infoButton, refreshButton, locationButton, addButton, couchListButton, settingsButton;
 @synthesize theMapView, locationManager, locationReallyEnabled, pointsFoundInRegion, mapPointsRequest;
-@synthesize couchSourceList, currentCouchSource;
+@synthesize couchSourceList, currentCouchSource, currentDatabaseDefinition;
 
 // Core Data - can delete if not used
 @synthesize fetchedResultsController=fetchedResultsController_, managedObjectContext=managedObjectContext_;
@@ -66,7 +66,7 @@
 {
     [super viewDidLoad];
     
-    // load couchlist from plist
+    // load couchlist from plist -- will be replaced by JSON
     
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"CouchSources" ofType:@"plist"];
     
@@ -76,10 +76,22 @@
     
     self.couchSourceList = [sourceDict objectForKey:kCouchSourceArrayKey]; 
     
+
     // last viewed should be read-from/persist-to user defaults
     self.currentCouchSource = 0; 
     
-    // set delegate here instead of in XIB
+    // temporary method to setup database definition - update when switching to JSON
+    
+    self.currentDatabaseDefinition = [[GeoCouchDatabaseDefinition alloc] init];
+
+    [self reloadDatabaseDefinition];
+   
+    
+    // end of code that needs updating during switch to JSON
+    
+    
+     
+    // set delegate here instead of in XIB so it's obvious
     self.theMapView.delegate = self;
     
     // Start the location manager and put the user on the map
@@ -149,6 +161,7 @@
     [locationManager release];
     
     [couchSourceList release];
+    [currentDatabaseDefinition release];
     
     [fetchedResultsController_ release];
     [managedObjectContext_ release];
@@ -236,11 +249,40 @@
     if (didSelect) {
         self.currentCouchSource = datasourceIndex;
         
+        [self reloadDatabaseDefinition];
+        
         [self setInitialMapRegion]; // move and reload the map
     }
     
     // subclasses should call super, do anything special they'd like to do, then dismiss as appropriate
     
+}
+
+// may be replaced/dratsically altered on switch to JSON
+- (void)reloadDatabaseDefinition {
+    
+    NSDictionary *defDict = [self.couchSourceList objectAtIndex:[self currentCouchSource]];
+    
+    // set properties for newly select database def -- object types in flux until RC
+    
+    self.currentDatabaseDefinition.databaseURL = [defDict objectForKey:kCouchSourceDatabaseURLKey];
+    self.currentDatabaseDefinition.pathForBrowserDesignDoc = [defDict objectForKey:kCouchSourcePathKey];
+    
+    self.currentDatabaseDefinition.name = [defDict objectForKey:kCouchSourceNameKey];
+    self.currentDatabaseDefinition.collection = [defDict objectForKey:kCouchSourceCollectionKey];
+    
+    self.currentDatabaseDefinition.includeDocs = NO; // not implemented yet
+    
+    // initial region -- it expects NSNumbers in an NSDictionary at the moment
+    
+    self.currentDatabaseDefinition.initialRegion = [NSDictionary dictionaryWithObjectsAndKeys:
+                            [defDict objectForKey:kCouchSourceLatitudeKey], kCouchSourceLatitudeKey,
+                            [defDict objectForKey:kCouchSourceLongitudeKey], kCouchSourceLongitudeKey,
+                            [defDict objectForKey:kCouchSourceLatitudeKey], kCouchSourceLatitudeKey,
+                            [defDict objectForKey:kCouchSourceLongitudeKey], kCouchSourceLongitudeKey,
+                            nil];
+    
+#warning Incomplete: doesn't read all the properties yet, but I'm waiting until JSON conversion to finish it
 }
 
 

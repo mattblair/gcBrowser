@@ -233,8 +233,11 @@
             
             pointDetailVC.fetchDetailsOnView = NO; // might just be glancing at popover
             
-            pointDetailVC.databaseURL = [[self.couchSourceList objectAtIndex:[self currentCouchSource]] 
-                                         objectForKey:kCouchSourceDatabaseURLKey];
+            // delete after testing
+            //pointDetailVC.databaseURL = [[self.couchSourceList objectAtIndex:[self currentCouchSource]] 
+            //                             objectForKey:kCouchSourceDatabaseURLKey];
+            
+            pointDetailVC.currentDatabaseDefinition = self.currentDatabaseDefinition;
             
             // needs to be offest -- try x-10 and y+10 for starters
             

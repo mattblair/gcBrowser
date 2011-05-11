@@ -13,7 +13,7 @@
 
 @implementation PointDetailTableViewController
 
-@synthesize databaseURL, theDocID, lastRevID, pointDictionary, sortedRowNames;
+@synthesize currentDatabaseDefinition, theDocID, lastRevID, pointDictionary, sortedRowNames;
 @synthesize fetchDetailsOnView, theDocumentRequest;
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -28,14 +28,14 @@
 - (void)dealloc
 {
     
-    [databaseURL release]; // might be replaced if database def is used instead
-    [sortedRowNames release];
+    [currentDatabaseDefinition release]; 
     
     [theDocID release];
     [lastRevID release];
 
     // also add to mem warning?
     [pointDictionary release]; 
+    [sortedRowNames release];
     
     
     [super dealloc];
@@ -135,7 +135,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier] autorelease];
     }
     
     // Configure the cell...
@@ -225,7 +225,8 @@
         
         //[fetchingSpinner startAnimating];
         
-        NSString *urlString = [NSString stringWithFormat:@"%@/%@", self.databaseURL, self.theDocID];
+        NSString *urlString = [NSString stringWithFormat:@"%@/%@", 
+                               self.currentDatabaseDefinition.databaseURL, self.theDocID];
         
         NSLog(@"Generated Photo Request URL is: %@", urlString);
         
@@ -269,14 +270,14 @@
             
             NSDictionary *documentDict = [responseString JSONValue];
  
-            // quick and dirty way to show them all:
+            // Quick and dirty way to show them all:
             //self.pointDictionary = documentDict;
             //self.sortedRowNames = [documentDict allKeys];
             
             
             // parsing the dictionary -- what really needs to happen:
             
-            // All valid document requests return an id, else it wasn't found.
+            // All valid document requests return an id, else the document wasn't found.
             if ([documentDict objectForKey:@"_id"]) {
                 
                 // set aside _id and _rev
@@ -287,15 +288,44 @@
                 // put strings for the rest of keys into a dictionary to display
                 
                 NSMutableDictionary *theFullDocument = [[NSMutableDictionary alloc] initWithCapacity:10];
-                NSArray *receivedDocumentKeys = [documentDict allKeys];
                 
-                for (NSString *theKey in receivedDocumentKeys) {
+                
+                // get array of keys to display
+                
+                NSArray *documentDisplayKeys = nil;
+                
+                if (self.currentDatabaseDefinition.keysToDisplay) {
+                    documentDisplayKeys = [[NSArray alloc] initWithArray:self.currentDatabaseDefinition.keysToDisplay];
+                }
+                else {
                     
-                    if (!([theKey isEqualToString:@"_id"] || [theKey isEqualToString:@"_rev"])) {
-                        // add to theFullDocument
-                        
-                        // handle strings, numbers, dictionaries, arrays, etc.
-                    }
+                    // no defined list, so just read all keys, ditch id and rev, etc.
+                    // remove attachment until you add special handling for it?
+                    
+                    NSMutableArray *keyList = [[NSMutableArray alloc] initWithArray:[documentDict allKeys]];
+                    
+                    // alloc/init array to remove, too?
+                    [keyList removeObjectsInArray:[NSArray arrayWithObjects:@"_id", @"_rev", nil]];
+                    
+                    documentDisplayKeys = [[NSArray alloc] initWithArray:keyList];
+                     
+                    [keyList release];
+                    
+                }
+                
+                // verification:
+                
+                NSLog(@"This will process keys for: %@", documentDisplayKeys);
+                
+                
+                for (NSString *theKey in documentDisplayKeys) {
+                    
+                    // enumerating for special formatting in the future
+                    // needs to handle geometry, numbers, objects, arrays, etc.
+                    
+                    // this version just does dumb conversion to NSString for now
+                    [theFullDocument setObject:[[documentDict objectForKey:theKey] description]
+                                        forKey:theKey];
                     
                     
                 }
@@ -303,9 +333,10 @@
                 // reset value of pointDictionary and sortedRowNames
                 
                 self.pointDictionary = theFullDocument;
-                self.sortedRowNames = [documentDict allKeys]; // or read from database def, if defined there
+                self.sortedRowNames = documentDisplayKeys;
                 
                 [theFullDocument release];
+                [documentDisplayKeys release];
 
                 
             }
