@@ -10,6 +10,14 @@
 		C91C9252137A1E27003DEA71 /* GeoCouchDatabaseDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = C91C9251137A1E27003DEA71 /* GeoCouchDatabaseDefinition.m */; };
 		C92B3F611379815900FEF1A4 /* PointDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C92B3F5F1379815900FEF1A4 /* PointDetailTableViewController.m */; };
 		C92B3F621379815900FEF1A4 /* PointDetailTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C92B3F601379815900FEF1A4 /* PointDetailTableViewController.xib */; };
+		C9391D10137C657500BA2DA5 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9391D0E137C657500BA2DA5 /* AboutViewController.m */; };
+		C9391D11137C657500BA2DA5 /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9391D0F137C657500BA2DA5 /* AboutViewController.xib */; };
+		C9391D17137C6B0E00BA2DA5 /* 11-x.png in Resources */ = {isa = PBXBuildFile; fileRef = C9391D13137C6B0E00BA2DA5 /* 11-x.png */; };
+		C9391D18137C6B0E00BA2DA5 /* 11-x@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C9391D14137C6B0E00BA2DA5 /* 11-x@2x.png */; };
+		C9391D19137C6B0E00BA2DA5 /* 31-circle-x.png in Resources */ = {isa = PBXBuildFile; fileRef = C9391D15137C6B0E00BA2DA5 /* 31-circle-x.png */; };
+		C9391D1A137C6B0E00BA2DA5 /* 31-circle-x@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C9391D16137C6B0E00BA2DA5 /* 31-circle-x@2x.png */; };
+		C9391D1D137C6CD000BA2DA5 /* 11-gray-x.png in Resources */ = {isa = PBXBuildFile; fileRef = C9391D1B137C6CD000BA2DA5 /* 11-gray-x.png */; };
+		C9391D1E137C6CD000BA2DA5 /* 11-gray-x@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C9391D1C137C6CD000BA2DA5 /* 11-gray-x@2x.png */; };
 		C95CBB63136F453300C49BF2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C95CBB62136F453300C49BF2 /* UIKit.framework */; };
 		C95CBB65136F453300C49BF2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C95CBB64136F453300C49BF2 /* Foundation.framework */; };
 		C95CBB67136F453300C49BF2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C95CBB66136F453300C49BF2 /* CoreGraphics.framework */; };
@@ -86,6 +94,15 @@
 		C92B3F5E1379815900FEF1A4 /* PointDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PointDetailTableViewController.h; path = Classes/PointDetailTableViewController.h; sourceTree = "<group>"; };
 		C92B3F5F1379815900FEF1A4 /* PointDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PointDetailTableViewController.m; path = Classes/PointDetailTableViewController.m; sourceTree = "<group>"; };
 		C92B3F601379815900FEF1A4 /* PointDetailTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PointDetailTableViewController.xib; path = Classes/PointDetailTableViewController.xib; sourceTree = "<group>"; };
+		C9391D0D137C657500BA2DA5 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AboutViewController.h; path = Classes/AboutViewController.h; sourceTree = "<group>"; };
+		C9391D0E137C657500BA2DA5 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AboutViewController.m; path = Classes/AboutViewController.m; sourceTree = "<group>"; };
+		C9391D0F137C657500BA2DA5 /* AboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AboutViewController.xib; path = Classes/AboutViewController.xib; sourceTree = "<group>"; };
+		C9391D13137C6B0E00BA2DA5 /* 11-x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "11-x.png"; sourceTree = "<group>"; };
+		C9391D14137C6B0E00BA2DA5 /* 11-x@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "11-x@2x.png"; sourceTree = "<group>"; };
+		C9391D15137C6B0E00BA2DA5 /* 31-circle-x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "31-circle-x.png"; sourceTree = "<group>"; };
+		C9391D16137C6B0E00BA2DA5 /* 31-circle-x@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "31-circle-x@2x.png"; sourceTree = "<group>"; };
+		C9391D1B137C6CD000BA2DA5 /* 11-gray-x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "11-gray-x.png"; sourceTree = "<group>"; };
+		C9391D1C137C6CD000BA2DA5 /* 11-gray-x@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "11-gray-x@2x.png"; sourceTree = "<group>"; };
 		C95CBB5E136F453300C49BF2 /* gcBrowserδ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "gcBrowserδ.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C95CBB62136F453300C49BF2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C95CBB64136F453300C49BF2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -328,6 +345,9 @@
 				C9FE467F1370B49400025503 /* CouchListViewController.h */,
 				C9FE46801370B49400025503 /* CouchListViewController.m */,
 				C9FE46811370B49400025503 /* CouchListViewController.xib */,
+				C9391D0D137C657500BA2DA5 /* AboutViewController.h */,
+				C9391D0E137C657500BA2DA5 /* AboutViewController.m */,
+				C9391D0F137C657500BA2DA5 /* AboutViewController.xib */,
 				C92B3F5E1379815900FEF1A4 /* PointDetailTableViewController.h */,
 				C92B3F5F1379815900FEF1A4 /* PointDetailTableViewController.m */,
 				C92B3F601379815900FEF1A4 /* PointDetailTableViewController.xib */,
@@ -416,6 +436,12 @@
 		C997D7BC13704C19005D042F /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C9391D1B137C6CD000BA2DA5 /* 11-gray-x.png */,
+				C9391D1C137C6CD000BA2DA5 /* 11-gray-x@2x.png */,
+				C9391D13137C6B0E00BA2DA5 /* 11-x.png */,
+				C9391D14137C6B0E00BA2DA5 /* 11-x@2x.png */,
+				C9391D15137C6B0E00BA2DA5 /* 31-circle-x.png */,
+				C9391D16137C6B0E00BA2DA5 /* 31-circle-x@2x.png */,
 				C997D7BD13704C19005D042F /* 103-map.png */,
 				C997D7BE13704C19005D042F /* 103-map@2x.png */,
 				C997D7BF13704C19005D042F /* 19-gear.png */,
@@ -514,6 +540,13 @@
 				C9FE467D1370A4C700025503 /* CouchSources.plist in Resources */,
 				C9FE46831370B49400025503 /* CouchListViewController.xib in Resources */,
 				C92B3F621379815900FEF1A4 /* PointDetailTableViewController.xib in Resources */,
+				C9391D11137C657500BA2DA5 /* AboutViewController.xib in Resources */,
+				C9391D17137C6B0E00BA2DA5 /* 11-x.png in Resources */,
+				C9391D18137C6B0E00BA2DA5 /* 11-x@2x.png in Resources */,
+				C9391D19137C6B0E00BA2DA5 /* 31-circle-x.png in Resources */,
+				C9391D1A137C6B0E00BA2DA5 /* 31-circle-x@2x.png in Resources */,
+				C9391D1D137C6CD000BA2DA5 /* 11-gray-x.png in Resources */,
+				C9391D1E137C6CD000BA2DA5 /* 11-gray-x@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -577,6 +610,7 @@
 				C9F8F45B1378F97E0071238F /* gcBrowser.xcdatamodeld in Sources */,
 				C92B3F611379815900FEF1A4 /* PointDetailTableViewController.m in Sources */,
 				C91C9252137A1E27003DEA71 /* GeoCouchDatabaseDefinition.m in Sources */,
+				C9391D10137C657500BA2DA5 /* AboutViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

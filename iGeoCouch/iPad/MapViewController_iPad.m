@@ -130,6 +130,33 @@
 }
 
 
+- (IBAction)showAboutPage:(id)sender {
+    
+    // show the list modally
+    
+    AboutViewController *aboutVC = [[AboutViewController alloc] initWithNibName:@"AboutViewController" bundle:nil];
+    
+    aboutVC.delegate = self;
+    
+    aboutVC.modalPresentationStyle = UIModalPresentationFormSheet;
+    
+    [self presentModalViewController:aboutVC animated:YES];
+    
+    // On second modal dismissal, this line seems to be causing a call to dealloc of this subclass of Map VC
+    // See ticket 45 for details. I'm leaving this commented for now.
+    //[aboutVC release];
+    
+}
+
+
+// this is in the subclass in case you want to handle it differently from the iPhone handling
+- (void)aboutViewControllerDidFinish:(AboutViewController *)aboutViewController {
+    
+    [self dismissModalViewControllerAnimated:YES];
+    
+}
+
+
 #pragma mark - MapView Delegate
 
 

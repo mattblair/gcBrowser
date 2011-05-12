@@ -180,8 +180,8 @@
     [super didReceiveMemoryWarning];
     
     // Release any cached data, images, etc that aren't in use.
-    [pointsFoundInRegion release];
-    [mapPointsRequest release];
+    //[pointsFoundInRegion release];
+    //[mapPointsRequest release];
     
     // release Core Data here? Or hang on to it?
     
@@ -209,8 +209,8 @@
 
 - (IBAction)showAboutPage:(id)sender {
 	
-	// alert only for now...
-	
+	// alert -- overridden in subclassses
+
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"About" 
 													message:@"I haven't made the about page yet..." 
 												   delegate:self 
@@ -219,7 +219,6 @@
 	[alert show];
 	
 	[alert release];
-	
 	
 }
 
@@ -553,7 +552,7 @@
 						
                         
 						//NSLog(@"pointAnnotationArray has %d points in it.", [pointAnnotationArray count]);
-                        NSLog(@"pointAnnotationArray has %d points in it.", [self.pointsFoundInRegion count]);
+                        NSLog(@"self.pointsFoundInRegion has %d points in it.", [self.pointsFoundInRegion count]);
 						
 						// want to clear out old annotations but keep the user's location
                         // because it can take a while to come back

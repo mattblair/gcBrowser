@@ -11,7 +11,6 @@
 #import "PointDetailTableViewController.h"
 #import "gcBrowserConstants.h"
 
-
 @implementation MapViewController_iPhone
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -155,6 +154,26 @@
     [self dismissModalViewControllerAnimated:YES];
     
 }
+
+
+- (IBAction)showAboutPage:(id)sender {
+    
+    // show the list modally
+    
+    AboutViewController *aboutVC = [[AboutViewController alloc] initWithNibName:@"AboutViewController" bundle:nil];
+    
+    aboutVC.delegate = self;
+    
+    [self presentModalViewController:aboutVC animated:YES];
+    
+}
+
+- (void)aboutViewControllerDidFinish:(AboutViewController *)aboutViewController {
+    
+    [self dismissModalViewControllerAnimated:YES];
+    
+}
+
 
 #pragma mark - MapView Delegate
 

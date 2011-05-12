@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "MapViewController.h"
+#import "AboutViewController.h"
 
-@interface MapViewController_iPhone : MapViewController {
+@interface MapViewController_iPhone : MapViewController <AboutViewControllerDelegate> {
     
 }
 
@@ -19,5 +20,7 @@
 - (IBAction)showCouchList:(id)sender;
 
 - (void)couchListViewController:(CouchListViewController *)couchListViewController didSelectDatasource:(BOOL)didSelect atIndex:(NSUInteger)datasourceIndex;
+
+- (void)aboutViewControllerDidFinish:(AboutViewController *)aboutViewController;
 
 @end
