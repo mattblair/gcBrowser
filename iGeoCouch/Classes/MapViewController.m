@@ -279,19 +279,21 @@
     
     // Set initialRegion conditionally. There are default values for span deltas.
     
+    NSDictionary *regionDict = [defDict objectForKey:kCouchSourceRegionKey];
+    
     CLLocationCoordinate2D newCentroid = CLLocationCoordinate2DMake(
-                                [[defDict objectForKey:kCouchSourceLatitudeKey] doubleValue], 
-                                [[defDict objectForKey:kCouchSourceLongitudeKey] doubleValue]);
+                                [[regionDict objectForKey:kCouchSourceLatitudeKey] doubleValue], 
+                                [[regionDict objectForKey:kCouchSourceLongitudeKey] doubleValue]);
     
     MKCoordinateSpan newSpan;
     
     // Should check value, not just class. Also, check whether it's in a range?
-    if ([[defDict objectForKey:kCouchSourceLatitudeDeltaKey] isKindOfClass:[NSNumber class]] && 
-        [[defDict objectForKey:kCouchSourceLongitudeDeltaKey] isKindOfClass:[NSNumber class]]) {
+    if ([[regionDict objectForKey:kCouchSourceLatitudeDeltaKey] isKindOfClass:[NSNumber class]] && 
+        [[regionDict objectForKey:kCouchSourceLongitudeDeltaKey] isKindOfClass:[NSNumber class]]) {
         
         newSpan = MKCoordinateSpanMake(
-                            [[defDict objectForKey:kCouchSourceLatitudeDeltaKey] doubleValue], 
-                            [[defDict objectForKey:kCouchSourceLongitudeDeltaKey] doubleValue]);
+                            [[regionDict objectForKey:kCouchSourceLatitudeDeltaKey] doubleValue], 
+                            [[regionDict objectForKey:kCouchSourceLongitudeDeltaKey] doubleValue]);
         
     }
     else { // defaults set here, overriding object's init

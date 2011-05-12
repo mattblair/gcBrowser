@@ -14,7 +14,7 @@
 @implementation PointDetailTableViewController
 
 @synthesize currentDatabaseDefinition, theDocID, lastRevID, pointDictionary, sortedRowNames;
-@synthesize fetchDetailsOnView, theDocumentRequest;
+@synthesize fetchDetailsOnViewWillAppear, theDocumentRequest, fetchView, fetchButton;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -37,6 +37,8 @@
     [pointDictionary release]; 
     [sortedRowNames release];
     
+    [fetchView release];
+    [fetchButton release];
     
     [super dealloc];
 }
@@ -47,6 +49,8 @@
     [super didReceiveMemoryWarning];
     
     // Release any cached data, images, etc that aren't in use.
+    
+    self.fetchView = nil;
     
 }
 
@@ -62,6 +66,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
+    //self.tableView.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
     
     // set the default order of the rows -- use constants if you keep this method
     self.sortedRowNames = [NSArray arrayWithObjects:@"title",@"subtitle", @"latitude", @"longitude", nil];
@@ -79,14 +84,47 @@
 {
     [super viewWillAppear:animated];
     
+    // set the default order of the rows again...
+    // this is redundant to viewDidLoad, but it fixed a range exception that I think was caused
+    // by race condition between this array and cell drawing. see ticket #42. Clean this up.
+    self.sortedRowNames = [NSArray arrayWithObjects:@"title",@"subtitle", @"latitude", @"longitude", nil];
+    
     // load currently available values
     [self.tableView reloadData];
     
     // start the process of fetching the rest of the doc, if needed
 
-    if (fetchDetailsOnView) {
+    if (fetchDetailsOnViewWillAppear) {
         
         [self fetchFullDocument];
+        
+    }
+    else {  // set up fetch UI -- subclass for iPhone to use nav bar or toolbar?
+        
+        CGRect fetchFrame = CGRectMake(0.0, 0.0, 320.0, 64.0);
+        
+        self.fetchView = [[UIView alloc] initWithFrame:fetchFrame];
+        
+        self.fetchView.backgroundColor = [UIColor lightGrayColor];
+        
+        CGRect buttonFrame = CGRectMake(80.0, 10.0, 160.0, 44.0);
+        
+        self.fetchButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        
+        self.fetchButton.frame = buttonFrame;
+        
+        [self.fetchButton setTitle:@"Fetch Details" forState:UIControlStateNormal];
+        [self.fetchButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+        
+        [self.fetchButton addTarget:self action:@selector(fetchFullDocument) forControlEvents:UIControlEventTouchUpInside];
+        
+        [self.tableView.tableFooterView setFrame:fetchFrame];
+        
+        [fetchView addSubview:self.fetchButton];
+        
+        self.tableView.tableHeaderView = self.fetchView;
+        
+       
         
     }
     
@@ -135,7 +173,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
     }
     
     // Configure the cell...
@@ -143,9 +181,11 @@
     NSString *keyName = [self.sortedRowNames objectAtIndex:indexPath.row];
     
     cell.textLabel.text = [keyName capitalizedString];
+    cell.textLabel.textColor = [UIColor lightGrayColor];
     
-    // check for NSString?
+    // get rid of description once the parsing code is returning strings reliably
     cell.detailTextLabel.text = [[self.pointDictionary objectForKey:keyName] description]; 
+    cell.detailTextLabel.textColor = [UIColor blackColor];
     
     return cell;
 }
@@ -209,6 +249,18 @@
 
 - (void)fetchFullDocument {
     
+    // one-shot -- they don't get to try again unless they come back to this view
+    
+    self.fetchButton.enabled = NO;
+    
+    // animate this out, and then set as nil on the call back
+    
+    [UIView animateWithDuration:0.4 animations:^ (void) {
+        
+        self.fetchButton.alpha = 0.0;
+        
+    }];
+
     // Check Reachability first
     
     NetworkStatus status = [[Reachability reachabilityForInternetConnection] currentReachabilityStatus];
@@ -216,14 +268,6 @@
     
     if (status == kReachableViaWiFi || status == kReachableViaWWAN) { 
         
-        
-        // NSLog(@"TDVC: Internet Reachable. Preparing request for details...");
-        
-        // Update UI
-        
-        //fetchingLabel.text = @"Fetching Images...";
-        
-        //[fetchingSpinner startAnimating];
         
         NSString *urlString = [NSString stringWithFormat:@"%@/%@", 
                                self.currentDatabaseDefinition.databaseURL, self.theDocID];
@@ -242,14 +286,26 @@
                 
         [self.theDocumentRequest startAsynchronous];
         
+        // Update UI
+        
+        [UIView animateWithDuration:0.4 
+                         animations:^ (void) {
+                             
+                             self.tableView.tableHeaderView.frame = CGRectMake(0.0, 0.0, 0.0, 0.0);
+                             
+                         } completion:^(BOOL finished) {
+                             
+                             self.tableView.tableHeaderView = nil;
+                             
+                         }];
+        
     }
     else {
         // no connection
         NSLog(@"Detail Request won't be made: no connection.");
         
         // Update UI
-        //fetchingLabel.text = @"Images not available. (Offline)";
-        //[fetchingSpinner stopAnimating];
+        
     }
 
     

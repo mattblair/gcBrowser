@@ -32,10 +32,12 @@ it makes sense to go that route at some point in the future.
     // YES on the iPhone, because they've already seen a callout, and this is shown as a full screen transition
     // NO on the iPad, because this is shown in a popover, and the user may only want a peek
     // Exception: if the database def is set to include documents in the geoquery, don't fetch again
-    BOOL fetchDetailsOnView; 
+    BOOL fetchDetailsOnViewWillAppear; 
     
     ASIHTTPRequest *theDocumentRequest;
     
+    UIView *fetchView;
+    UIButton *fetchButton;
 }
 
 @property (nonatomic, retain) GeoCouchDatabaseDefinition *currentDatabaseDefinition;
@@ -45,8 +47,11 @@ it makes sense to go that route at some point in the future.
 @property (nonatomic, retain) NSDictionary *pointDictionary;
 @property (nonatomic, retain) NSArray *sortedRowNames;
 
-@property (nonatomic) BOOL fetchDetailsOnView;
+@property (nonatomic) BOOL fetchDetailsOnViewWillAppear;
 @property (nonatomic, retain) ASIHTTPRequest *theDocumentRequest;
+
+@property (nonatomic, retain) UIView *fetchView;
+@property (nonatomic, retain) UIButton *fetchButton;
 
 - (void)fetchFullDocument;
 - (void)killRequest;

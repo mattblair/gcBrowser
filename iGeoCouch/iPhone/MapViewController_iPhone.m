@@ -195,7 +195,7 @@
         
         pointVC.pointDictionary = annotationDict;
         
-        pointVC.fetchDetailsOnView = YES;  // include include_docs was used in geoquery
+        pointVC.fetchDetailsOnViewWillAppear = YES;  // include include_docs was used in geoquery
         
         [self.navigationController pushViewController:pointVC animated:YES];
         

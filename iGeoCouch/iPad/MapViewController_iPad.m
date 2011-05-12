@@ -201,7 +201,7 @@
                 
                 pointVC.pointDictionary = annotationDict;
                 
-                CGSize mapPopoverSize = CGSizeMake(320.0, 220.0);
+                CGSize mapPopoverSize = CGSizeMake(320.0, 280.0);
                 
                 pointVC.contentSizeForViewInPopover = mapPopoverSize;
                 
@@ -231,7 +231,7 @@
             
             pointDetailVC.theDocID = [selectedPoint pointID];
             
-            pointDetailVC.fetchDetailsOnView = NO; // might just be glancing at popover
+            pointDetailVC.fetchDetailsOnViewWillAppear = NO; // might just be glancing at popover
             
             // delete after testing
             //pointDetailVC.databaseURL = [[self.couchSourceList objectAtIndex:[self currentCouchSourceIndex]] 
