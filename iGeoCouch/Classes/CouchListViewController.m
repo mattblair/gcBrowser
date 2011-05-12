@@ -28,7 +28,6 @@
 - (void)dealloc
 {
     [couchSourceList release];
-    [delegate release];
     
     [super dealloc];
 }

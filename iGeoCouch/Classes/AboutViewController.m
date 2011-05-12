@@ -29,8 +29,6 @@
     [titleLabel release];
     [versionLabel release];
     
-    [delegate release];
-    
     [closeButton release];
     [super dealloc];
 }

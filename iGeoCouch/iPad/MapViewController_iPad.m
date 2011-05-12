@@ -142,9 +142,7 @@
     
     [self presentModalViewController:aboutVC animated:YES];
     
-    // On second modal dismissal, this line seems to be causing a call to dealloc of this subclass of Map VC
-    // See ticket 45 for details. I'm leaving this commented for now.
-    //[aboutVC release];
+    [aboutVC release];
     
 }
 
