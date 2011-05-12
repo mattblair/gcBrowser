@@ -15,12 +15,11 @@
     NSString *collection;
     
     // fetching data
-    NSString *databaseURL; // or use NSURL? which is easier elsewhere
-    NSString *pathForBrowserDesignDoc; // if nil, flip includeDocs to YES
-    BOOL includeDocs; // default NO
-    BOOL local; // not used...yet...
+    NSString *databaseURL;
+    NSString *pathForBrowserDesignDoc; 
+    BOOL includeDocs; 
+    BOOL local; 
     
-    //NSDictionary *initialRegion; 
     MKCoordinateRegion initialRegion;
     NSArray *keysToDisplay;     
     NSString *keyForTitle;
@@ -42,8 +41,11 @@
 
 // fetching data
 @property (nonatomic, retain) NSString *databaseURL; 
-@property (nonatomic, retain) NSString *pathForBrowserDesignDoc;
-@property (nonatomic) BOOL includeDocs;
+@property (nonatomic, retain) NSString *pathForBrowserDesignDoc; // if nil, flip includeDocs to YES?
+@property (nonatomic) BOOL includeDocs; // default NO
+
+// if YES, will fetch details immediately, won't call Reachability, etc.
+// not used...yet...
 @property (nonatomic) BOOL local;
 
 
@@ -69,6 +71,6 @@
 
 
 
-// add methods for toJSON and initFromJSON and then store initial region as MapKit natives?
+// add methods for toJSON and initFromJSON, and translate initialRegion into an NSDictionary, etc.
 
 @end

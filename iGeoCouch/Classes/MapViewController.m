@@ -802,23 +802,31 @@
 	
 	MKCoordinateRegion newRegion;
 	
-	// temp method to go to default location only...
-	NSLog(@"Placeholder adjustMapRegion goes to default region only.");
+    
+    // add accuracy/timestamp test here? See PDX Trees for an example
+	if ([CLLocationManager locationServicesEnabled] && self.locationReallyEnabled) {
+		
+		newRegion.center = [[[self locationManager] location] coordinate]; // handles lat/long
+        
+		newRegion.span.latitudeDelta = kCurrentLocationLatitudeDelta;
+        
+		newRegion.span.longitudeDelta = kCurrentLocationLongitudeDelta; 
+		
+	}
 	
-	// default region -- haven't implemented yet
+	else {
+		
+		// default region
+		NSLog(@"Location not available. Returning to default for this database.");
+        
+        newRegion = self.currentDatabaseDefinition.initialRegion;		
+	}
 	
-	newRegion.center.latitude = kDefaultRegionLatitude;
-	newRegion.center.longitude = kDefaultRegionLongitude;
 	
-	newRegion.span.latitudeDelta = kDefaultRegionLatitudeDelta;
-	newRegion.span.longitudeDelta = kDefaultRegionLongitudeDelta;
-	
-	
-	// correct the aspect ratio -- not working
+	// correct the aspect ratio -- not working across all devices
 	MKCoordinateRegion fitRegion = [self.theMapView regionThatFits:newRegion];
 	
     [self.theMapView setRegion:fitRegion animated:YES];
-	
 	
 	// Reload the art for the newly-set region
 	[self refreshPointsOnMap];

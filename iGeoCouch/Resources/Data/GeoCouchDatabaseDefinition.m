@@ -34,8 +34,8 @@
         
         // Approximately walking distance in most places.
         // Intentionally small for big datasets.
-        // NOTE: these are not used at the moment.
-        // See reloadDatabaseDefinition of Map VC, where they are set currently.
+        // NOTE: these are not used at the moment, but that's subject to change.
+        // See reloadDatabaseDefinition of Map VC, where they are currently set.
         initialRegion.span.latitudeDelta = 0.011;
         initialRegion.span.longitudeDelta = 0.014;
         

@@ -69,7 +69,7 @@
     //self.tableView.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
     
     // set the default order of the rows -- use constants if you keep this method
-    self.sortedRowNames = [NSArray arrayWithObjects:@"title",@"subtitle", @"latitude", @"longitude", nil];
+    // self.sortedRowNames = [NSArray arrayWithObjects:@"title",@"subtitle", @"latitude", @"longitude", nil];
     
 }
 
@@ -86,7 +86,7 @@
     
     // set the default order of the rows again...
     // this is redundant to viewDidLoad, but it fixed a range exception that I think was caused
-    // by race condition between this array and cell drawing. see ticket #42. Clean this up.
+    // by a race condition between this array and cell drawing. see ticket #42. Clean this up.
     self.sortedRowNames = [NSArray arrayWithObjects:@"title",@"subtitle", @"latitude", @"longitude", nil];
     
     // load currently available values
@@ -163,8 +163,9 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
-    return [self.pointDictionary count];
+    // pointDictionary should have same count, but sortedRowNames is safer b/c it's used to generate cells
+    //return [self.pointDictionary count];
+    return [self.sortedRowNames count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -356,7 +357,7 @@
                 else {
                     
                     // no defined list, so just read all keys, ditch id and rev, etc.
-                    // remove attachment until you add special handling for it?
+                    // remove _attachment until you add special handling for it?
                     
                     NSMutableArray *keyList = [[NSMutableArray alloc] initWithArray:[documentDict allKeys]];
                     
@@ -373,15 +374,63 @@
                 
                 NSLog(@"This will process keys for: %@", documentDisplayKeys);
                 
+                // create another array to hold new keys unpacked from geometry, properties, etc.
                 
+                // capacity = display keys - geometry + lat/long? best guess?
+                NSMutableArray *newDisplayKeys = [[NSMutableArray alloc] initWithCapacity:[documentDisplayKeys count] + 1]; 
+                
+                // Make a list of special cases of nested keys like geometry, properties, 
+                // _attachements, etc. and put them in an enum so that you can 
+                // use switch to avoid if-elseif ad nauseum...
                 for (NSString *theKey in documentDisplayKeys) {
                     
-                    // enumerating for special formatting in the future
-                    // needs to handle geometry, numbers, objects, arrays, etc.
+                    if ([theKey isEqualToString:@"geometry"]) {
+
+                        // don't need to validate type, because if it wasn't valid, 
+                        // it wouldn't be in a geoquery result. True? Too risky?
+                        
+                        NSArray *coordinateArray = 
+                            [[documentDict objectForKey:theKey] objectForKey:@"coordinates"];
+                        
+                        [theFullDocument setObject:[[coordinateArray objectAtIndex:1] stringValue] 
+                                            forKey:@"latitude"];
+                        [newDisplayKeys addObject:@"latitude"];
+                        
+                        [theFullDocument setObject:[[coordinateArray objectAtIndex:0] stringValue] 
+                                            forKey:@"longitude"];
+                        [newDisplayKeys addObject:@"longitude"];
+                        
+                    }
+                    else if ([theKey isEqualToString:@"properties"] && 
+                             [[documentDict objectForKey:theKey] isKindOfClass:[NSDictionary class]]) {
+                        
+                        // iterate properties dict -- no way to order or specify these at the moment
+                        // if you keep this structure, alloc/init/release explicitly
+                        
+                        NSDictionary *propertiesDict = [documentDict objectForKey:theKey];
+                        
+                        NSArray *propKeys = [propertiesDict allKeys];
+                        
+                        // dumb string conversion
+                        for (NSString *thePropKey in propKeys) {
+                            [theFullDocument setObject:[[propertiesDict objectForKey:thePropKey] description]
+                                                forKey:thePropKey];
+                            [newDisplayKeys addObject:thePropKey];
+                        }
+                        
+                        
+                    }
                     
-                    // this version just does dumb conversion to NSString for now
-                    [theFullDocument setObject:[[documentDict objectForKey:theKey] description]
-                                        forKey:theKey];
+                    else {
+                        
+                        // enumerate for type-specific formatting in the future
+                        // needs to handle numbers, objects, arrays, etc.
+                        // this version just does dumb conversion to NSString for now
+                        [theFullDocument setObject:[[documentDict objectForKey:theKey] description]
+                                            forKey:theKey];
+                        [newDisplayKeys addObject:theKey];
+                        
+                    }
                     
                     
                 }
@@ -389,11 +438,12 @@
                 // reset value of pointDictionary and sortedRowNames
                 
                 self.pointDictionary = theFullDocument;
-                self.sortedRowNames = documentDisplayKeys;
+                //self.sortedRowNames = documentDisplayKeys;
+                self.sortedRowNames = newDisplayKeys;
                 
                 [theFullDocument release];
                 [documentDisplayKeys release];
-
+                [newDisplayKeys release];
                 
             }
             else { // A Couch '404' looks like: {"error":"not_found","reason":"missing"}
@@ -436,8 +486,6 @@
 }
 
 - (void)killRequest {
-    
-    //
     
     if ([self.theDocumentRequest inProgress]) {
         
