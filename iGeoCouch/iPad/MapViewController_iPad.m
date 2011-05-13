@@ -3,8 +3,35 @@
 //  gcBrowser
 //
 //  Created by Matt Blair on 5/2/11.
-//  Copyright 2011 Elsewise LLC. All rights reserved.
 //
+//  Copyright (c) 2011, Elsewise LLC
+//  All rights reserved.
+// 
+//  Redistribution and use in source and binary forms, with or without modification,
+//  are permitted provided that the following conditions are met:
+//
+//  * Redistributions of source code must retain the above copyright notice, this 
+//     list of conditions and the following disclaimer.
+//  * Redistributions in binary form must reproduce the above copyright notice, 
+//     this list of conditions and the following disclaimer in the documentation 
+//     and/or other materials provided with the distribution.
+//  * Neither the name of Elsewise LLC nor the names of its contributors may be 
+//     used to endorse or promote products derived from this software without 
+//     specific prior written permission.
+// 
+//  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
+//  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
+//  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
+//  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR 
+//  ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES 
+//  (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+//  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND 
+//  ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
+//  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS 
+//  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+//
+
+
 
 #import "MapViewController_iPad.h"
 #import "CouchListViewController.h"
@@ -77,7 +104,6 @@
     if (self.couchListPVC.isPopoverVisible) {
         
         [self.couchListPVC dismissPopoverAnimated:YES];
-        NSLog(@"dismissed couchListPVC");
         
     }
 
@@ -85,7 +111,7 @@
 
         if (!self.couchListPVC) {
             
-            NSLog(@"couchListPVC does not exist");
+            //NSLog(@"couchListPVC does not exist. Creating it...");
             
             CouchListViewController *couchListVC = [[CouchListViewController alloc] initWithNibName:@"CouchListViewController" bundle:nil];
             
@@ -131,9 +157,7 @@
 
 
 - (IBAction)showAboutPage:(id)sender {
-    
-    // show the list modally
-    
+       
     AboutViewController *aboutVC = [[AboutViewController alloc] initWithNibName:@"AboutViewController" bundle:nil];
     
     aboutVC.delegate = self;
@@ -161,17 +185,15 @@
 // overriding here to omit callout and right accessory
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
-    // If it's the user location, just return nil.
+
     if ([annotation isKindOfClass:[MKUserLocation class]])
         return nil;
 	
-	// Try to dequeue an existing pin view first.
 	MKPinAnnotationView* pinView = (MKPinAnnotationView*)[mapView
 														  dequeueReusableAnnotationViewWithIdentifier:@"CustomPinAnnotationView"];
 	
 	if (!pinView)
 	{
-		// If an existing pin view was not available, create one.
 		pinView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation
 												   reuseIdentifier:@"CustomPinAnnotationView"] 
 				   autorelease];
@@ -186,8 +208,7 @@
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
     
-    // show popover here instead?
-    NSLog(@"Annotation selected: %@", [view.annotation title]);
+    //NSLog(@"Annotation selected: %@", [view.annotation title]);
     
     if (self.mapCalloutPVC.isPopoverVisible) {
         [self.mapCalloutPVC dismissPopoverAnimated:YES];
@@ -196,7 +217,8 @@
         
         // not working -- it's not getting deselected until another one is tapped
         // see note in docs -- you're supposed to use map view to handle this.
-        //[view setSelected:NO animated:YES]; 
+        // [view setSelected:NO animated:YES]; 
+        // even using that, there seems to be a delay...
         [self.theMapView deselectAnnotation:view.annotation animated:YES];
     }
     else {
@@ -240,7 +262,7 @@
                 
             }
             
-            // pass the new information -- tis kind of ugly at the moment?
+            // pass the point's information -- kind of ugly at the moment?
             
             PointDetailTableViewController *pointDetailVC = (PointDetailTableViewController *)[self.mapCalloutPVC contentViewController];
             
@@ -257,11 +279,7 @@
             pointDetailVC.theDocID = [selectedPoint pointID];
             
             pointDetailVC.fetchDetailsOnViewWillAppear = NO; // might just be glancing at popover
-            
-            // delete after testing
-            //pointDetailVC.databaseURL = [[self.couchSourceList objectAtIndex:[self currentCouchSourceIndex]] 
-            //                             objectForKey:kCouchSourceDatabaseURLKey];
-            
+                        
             pointDetailVC.currentDatabaseDefinition = self.currentDatabaseDefinition;
             
             // needs to be offest -- try x-10 and y+10 for starters
@@ -278,13 +296,13 @@
 
 - (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
     
-    // dismiss popover here?
+    // dismiss popover here, too?
     NSLog(@"Annotation deselected: %@", [view.annotation title]);
     
 }
 
 
-// This code assumes a callout, but it looks weird, to have a popover coming from a callout
+// This code assumes a callout is shown, but it looks weird to have a popover coming from a callout
 
 /*
 

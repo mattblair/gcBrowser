@@ -3,7 +3,32 @@
 //  gcBrowser
 //
 //  Created by Matt Blair on 5/2/11.
-//  Copyright 2011 Elsewise LLC. All rights reserved.
+//
+//  Copyright (c) 2011, Elsewise LLC
+//  All rights reserved.
+// 
+//  Redistribution and use in source and binary forms, with or without modification,
+//  are permitted provided that the following conditions are met:
+//
+//  * Redistributions of source code must retain the above copyright notice, this 
+//     list of conditions and the following disclaimer.
+//  * Redistributions in binary form must reproduce the above copyright notice, 
+//     this list of conditions and the following disclaimer in the documentation 
+//     and/or other materials provided with the distribution.
+//  * Neither the name of Elsewise LLC nor the names of its contributors may be 
+//     used to endorse or promote products derived from this software without 
+//     specific prior written permission.
+// 
+//  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
+//  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
+//  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
+//  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR 
+//  ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES 
+//  (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+//  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND 
+//  ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
+//  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS 
+//  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
 #import "MapViewController.h"
@@ -70,7 +95,7 @@
 {
     [super viewDidLoad];
     
-    // load couchlist from plist -- will be replaced by JSON
+    // loading couchlist from plist -- will be replaced by JSON soon
     
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"CouchSources" ofType:@"plist"];
     
@@ -81,7 +106,7 @@
     self.couchSourceList = [sourceDict objectForKey:kCouchSourceArrayKey]; 
     
 
-    // last viewed should be read-from/persist-to user defaults
+    // last viewed should be read-from/persisted-to user defaults
     self.currentCouchSourceIndex = 0; 
     
     // temporary method to setup database definition - update when switching to JSON
@@ -98,8 +123,8 @@
     // set delegate here instead of in XIB so it's obvious
     self.theMapView.delegate = self;
     
+    
     // Start the location manager and put the user on the map
-	
 	if ([CLLocationManager locationServicesEnabled]) {
 		// NSLog(@"About to turn Location on...");
 		[[self locationManager] startUpdatingLocation];  		
@@ -183,8 +208,6 @@
     //[pointsFoundInRegion release];
     //[mapPointsRequest release];
     
-    // release Core Data here? Or hang on to it?
-    
 }
 
 
@@ -226,16 +249,15 @@
 - (IBAction)showCouchList:(id)sender {
 	
     
-    // place holder for subclass overrides, if needed
+    // Example code: conditional behavior based on device idiom
+    // In most cases, I'm definining presentation in device-specific subclasses
     
     // is there any reason to use one of these over the other?
     //if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
       
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
     
-        // do this...
-        NSLog(@"It's an iPad -- handled by subclass.");
-        
+        NSLog(@"It's an iPad -- handled by subclass.");    
         
     }
     else {
@@ -254,7 +276,7 @@
         
         [self reloadDatabaseDefinition];
         
-        [self setInitialMapRegion]; // move and reload the map
+        [self setInitialMapRegion]; // move and reload the map to initial region specified in db def
     }
     
     // subclasses should call super, do anything special they'd like to do, then dismiss as appropriate
@@ -312,7 +334,7 @@
 	// alert only for now...
 	
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Add New Point" 
-													message:@"I haven't made the new point editor yet..." 
+													message:@"I haven't made the point editor yet..." 
 												   delegate:self 
 										  cancelButtonTitle:@"OK" 
 										  otherButtonTitles:nil];
@@ -320,13 +342,10 @@
 	
 	[alert release];
 	
-	
 }
 
 #pragma mark -
 #pragma mark Interacting with GeoCouch
-
-// should this return void, and have a wrapper method to connect ot the button via IBAction?
 
 - (IBAction)refreshPointsOnMap {
 	
@@ -353,15 +372,9 @@
     NSNumber *northLatitude = [NSNumber numberWithDouble:region.center.latitude + region.span.latitudeDelta/2.0];
     NSNumber *westLongitude = [NSNumber numberWithDouble:region.center.longitude - region.span.longitudeDelta/2.0];
     NSNumber *eastLongitude = [NSNumber numberWithDouble:region.center.longitude + region.span.longitudeDelta/2.0];
-	
-    //NSString *databaseURL = [[self.couchSourceList objectAtIndex:[self currentCouchSourceIndex]] 
-    //                         objectForKey:kCouchSourceDatabaseURLKey];
     
     NSString *databaseURL = self.currentDatabaseDefinition.databaseURL;
-    
-    //NSString *pathForMapSearch = [[self.couchSourceList objectAtIndex:[self currentCouchSourceIndex]] 
-    //                              objectForKey:kCouchSourcePathKey];
-    
+      
     NSString *pathForMapSearch = self.currentDatabaseDefinition.pathForBrowserDesignDoc;
     
 	//construct the URL -- trim the floats?
@@ -392,11 +405,11 @@
 	// Testing: can be commented before release
 	if (status == ReachableViaWiFi) {
 		// wifi connection
-		NSLog(@"Map View Point Request: Wi-Fi is available.");
+		NSLog(@"Map View Geoquery Request: Wi-Fi is available.");
 	}
 	if (status == ReachableViaWWAN) {
 		// wwan connection (could be GPRS, 2G or 3G)
-		NSLog(@"Map View Point Request: Only network available is 2G or 3G");	
+		NSLog(@"Map View Geoquery Request: Only network available is 2G or 3G");	
 	}
 	
 	if (status == kReachableViaWiFi || status == kReachableViaWWAN) { 
@@ -429,7 +442,7 @@
 		// no wifi or wwan
 		
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Connection" 
-														message:@"The internet is not available." 
+														message:@"The Internet is not available." 
 													   delegate:self 
 											  cancelButtonTitle:@"OK" 
 											  otherButtonTitles:nil];
@@ -463,21 +476,22 @@
 		
 		if ([[responseString JSONValue] isKindOfClass:[NSDictionary class]]) {
 			
-			NSLog(@"Top Level is a dictionary");
+			//NSLog(@"Response is a dictionary");
 			
 			NSDictionary *pointsJSON = [responseString JSONValue];
 			
 			// test if the rows key is an array
 			
 			if ([[pointsJSON objectForKey:@"rows"] isKindOfClass:[NSArray class]]) {
-				NSLog(@"Rows key is an array");
+				
+                //NSLog(@"Rows key is an array");
 				
 				NSArray *pointsArray = [pointsJSON objectForKey:@"rows"];
 				
 				if ([pointsArray count] > 0) {
 					if ([[pointsArray objectAtIndex:0] isKindOfClass:[NSDictionary class]]) {
 						
-						NSLog(@"Dictionary for object 0: %@", [[pointsArray objectAtIndex:0] description]);
+						//NSLog(@"Dictionary for object 0: %@", [[pointsArray objectAtIndex:0] description]);
 						
 						// emitted by standard gcBrowser design doc:
 						// keys: bbox, id, value: { title, subtitle }
@@ -499,17 +513,18 @@
 						 [[anArtwork valueForKey:@"bbox"] objectAtIndex:0]);
 						 
 						 */
-						// create annotations from the dictionary objects
+						
+                        // create annotations from the dictionary objects
 						
 						NSLog(@"Number of points retrieved from GeoCouch: %d", [pointsArray count]);
 						
-						NSLog(@"Clearing and refilling the annotations array");
+						//NSLog(@"Clearing and refilling the annotations array");
                         
                         // explicit release at the end was causing bad access on iPhone but not iPad
                         // b/c of MKMapView pokiness?
                         //NSMutableArray *pointAnnotationArray = [[[NSMutableArray alloc] initWithCapacity:12] autorelease]; 
-						
-                        // switching to ivar mutable array, which will stick around
+                        // switching to ivar mutable array
+                        
                         if (self.pointsFoundInRegion) {
                             [self.pointsFoundInRegion removeAllObjects];
                         }
@@ -521,7 +536,7 @@
                         
 						GeoCouchAnnotation *ga = nil;
                         
-						// loop and add annotations for each point returned
+						// Created an annotation for each point returned
 						
 						for (NSDictionary *aPoint in pointsArray) {
 							
@@ -529,11 +544,9 @@
 							
 							ga = [[GeoCouchAnnotation alloc] init];
 							
-							//[ga setTitle:[[aPoint valueForKey:@"value"] valueForKey:@"title"]];
                             [ga setTitle:[[aPoint valueForKey:@"value"] 
                                           valueForKey:self.currentDatabaseDefinition.keyForTitle]];
 							
-							//[ga setSubtitle:[[aPoint valueForKey:@"value"] valueForKey:@"subtitle"]];
                             [ga setSubtitle:[[aPoint valueForKey:@"value"] 
                                              valueForKey:self.currentDatabaseDefinition.keyForSubtitle]];
 							
@@ -543,15 +556,12 @@
 							
 							[ga setPointID:[aPoint valueForKey:@"id"]];
 							
-							//[pointAnnotationArray addObject:ga];
                             [self.pointsFoundInRegion addObject:ga];
 							
 							[ga release];
 							
 						}
 						
-                        
-						//NSLog(@"pointAnnotationArray has %d points in it.", [pointAnnotationArray count]);
                         NSLog(@"self.pointsFoundInRegion has %d points in it.", [self.pointsFoundInRegion count]);
 						
 						// want to clear out old annotations but keep the user's location
@@ -565,12 +575,8 @@
                         
 						[theMapView removeAnnotations:annotationsToRemove];
 						
-						//[theMapView addAnnotations:pointAnnotationArray]; 
                         [theMapView addAnnotations:self.pointsFoundInRegion];
-						
-                        // causing crash on iPhone but not iPad? autoreleasing the array instead
-                        //[pointAnnotationArray release];  
-                        
+						                        
 					}
 					else {
 						NSLog(@"requestFinished: No dictionary objects found that represent points.");
@@ -593,9 +599,9 @@
 		else {
 			
 			
-			// TESTING ONLY Shouldn't happen in real life. Like all bugs.
+			// TESTING ONLY Shouldn't happen in real life. (Like all bugs...)
 			
-			NSLog(@"requestFinished: Unexpected results. Top Level is not a dictionary");
+			NSLog(@"requestFinished: Unexpected results. Response is not a dictionary");
             
 			NSLog(@"No points found for this region search...");
 			
@@ -639,7 +645,8 @@
 	
 	NSError *error = [request error];
 	
-	if (([error code] == 4) && ([[error domain] isEqualToString:@"ASIHTTPRequestErrorDomain"])) {  // not an error
+    // not really an error
+	if (([error code] == 4) && ([[error domain] isEqualToString:@"ASIHTTPRequestErrorDomain"])) {  
 		NSLog(@"Cancellation initiated by Reachability notification.");
 		
 	}
@@ -676,7 +683,7 @@
 	refreshButton.enabled = YES;
 	
 	// uncomment this to see every region change in the console
-    // this is helpful for selecting an initial view for a dataset
+    // this is helpful for determing an initial view for a dataset
 	
     NSLog(@"Map view changed to new region...");
     NSLog(@"This region's latitude is: %f", map.region.center.latitude);
@@ -689,7 +696,7 @@
 // override in iPad version if you don't want to use the callout
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
-    // If it's the user location, just return nil.
+    // Don't alter the current location
     if ([annotation isKindOfClass:[MKUserLocation class]])
         return nil;
 	
@@ -699,7 +706,6 @@
 	
 	if (!pinView)
 	{
-		// If an existing pin view was not available, create one.
 		pinView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation
 												   reuseIdentifier:@"CustomPinAnnotationView"] 
 				   autorelease];
@@ -707,7 +713,6 @@
 		pinView.animatesDrop = YES;
 		pinView.canShowCallout = YES;
 		
-		// Add a detail disclosure button to the callout
 		UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
 		
 		pinView.rightCalloutAccessoryView = rightButton;
@@ -728,10 +733,9 @@
 	// sub-classes do not need to call super
 	
 	// see PDXTrees for an example of using annotation to request full object from Core Data
-	// then setting that object for display in a view Controller. 
+	// then setting that object for display in a view controller. 
 	
 	// get access to the original annotation
-	
 	GeoCouchAnnotation *selectedPoint = view.annotation;
 	NSLog(@"The ID of the selected point is: %@", [selectedPoint pointID]);
 	
@@ -743,7 +747,6 @@
 	[alert show];
 	
 	[alert release];
-	
 	
 }
 
@@ -757,7 +760,8 @@
 	
 	MKCoordinateRegion newRegion;
     
-    // read values specific to datasource instead
+    // If you always want the user to return to the initial map region:
+    
     /*
 	newRegion.center.latitude = kDefaultRegionLatitude;
 	newRegion.center.longitude = kDefaultRegionLongitude;
@@ -765,21 +769,9 @@
 	newRegion.span.latitudeDelta = kDefaultRegionLatitudeDelta;
 	newRegion.span.longitudeDelta = kDefaultRegionLongitudeDelta;
     */
-	
-    // old way
-    /*
-    NSDictionary *currentSource = [self.couchSourceList objectAtIndex:[self currentCouchSourceIndex]];
     
-    NSLog(@"setInitialMapRegion: %@", currentSource);
     
-    NSDictionary *initialRegion = [currentSource objectForKey:kCouchSourceRegionKey]; // collapse this to one dictionary?
-    
-    newRegion.center.latitude = [[initialRegion objectForKey:kCouchSourceLatitudeKey] doubleValue];
-	newRegion.center.longitude = [[initialRegion objectForKey:kCouchSourceLongitudeKey] doubleValue];
-	
-	newRegion.span.latitudeDelta = [[initialRegion objectForKey:kCouchSourceLatitudeDeltaKey] doubleValue];
-	newRegion.span.longitudeDelta = [[initialRegion objectForKey:kCouchSourceLongitudeDeltaKey] doubleValue];
-    */
+    // or read values specific to the selected database instead
     
     newRegion = self.currentDatabaseDefinition.initialRegion;
 	
@@ -790,7 +782,7 @@
 	
 	[self refreshPointsOnMap];
 	
-	// prevent accidental search requests
+	// Update UI to prevent accidental search requests that would return the same results
 	self.refreshButton.enabled = NO;
 	
 }
@@ -903,9 +895,7 @@
 	
 	
 	// because locationServicesEnabled class method is erratic in 4.1, need to handle this here
-	
-	
-	// set a bool on the VC that tells it location has failed.
+	// set a BOOL on the VC that tells it location has failed.
 	
 	if (([error code] == 1) && ([[error domain] isEqualToString:@"kCLErrorDomain"])) {
 		locationReallyEnabled = NO;  // to handle CL behavior in iOS 4.1

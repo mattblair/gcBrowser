@@ -3,8 +3,35 @@
 //  gcBrowser
 //
 //  Created by Matt Blair on 5/10/11.
-//  Copyright 2011 Elsewise LLC. All rights reserved.
 //
+//  Copyright (c) 2011, Elsewise LLC
+//  All rights reserved.
+// 
+//  Redistribution and use in source and binary forms, with or without modification,
+//  are permitted provided that the following conditions are met:
+//
+//  * Redistributions of source code must retain the above copyright notice, this 
+//     list of conditions and the following disclaimer.
+//  * Redistributions in binary form must reproduce the above copyright notice, 
+//     this list of conditions and the following disclaimer in the documentation 
+//     and/or other materials provided with the distribution.
+//  * Neither the name of Elsewise LLC nor the names of its contributors may be 
+//     used to endorse or promote products derived from this software without 
+//     specific prior written permission.
+// 
+//  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
+//  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
+//  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
+//  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR 
+//  ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES 
+//  (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+//  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND 
+//  ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
+//  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS 
+//  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+//
+
+
 
 #import "PointDetailTableViewController.h"
 #import "gcBrowserConstants.h"
@@ -66,11 +93,6 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    //self.tableView.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
-    
-    // set the default order of the rows -- use constants if you keep this method
-    // self.sortedRowNames = [NSArray arrayWithObjects:@"title",@"subtitle", @"latitude", @"longitude", nil];
-    
 }
 
 - (void)viewDidUnload
@@ -84,16 +106,13 @@
 {
     [super viewWillAppear:animated];
     
-    // set the default order of the rows again...
-    // this is redundant to viewDidLoad, but it fixed a range exception that I think was caused
-    // by a race condition between this array and cell drawing. see ticket #42. Clean this up.
+    // set the default order of the rows
     self.sortedRowNames = [NSArray arrayWithObjects:@"title",@"subtitle", @"latitude", @"longitude", nil];
     
     // load currently available values
     [self.tableView reloadData];
     
     // start the process of fetching the rest of the doc, if needed
-
     if (fetchDetailsOnViewWillAppear) {
         
         [self fetchFullDocument];
@@ -123,8 +142,6 @@
         [fetchView addSubview:self.fetchButton];
         
         self.tableView.tableHeaderView = self.fetchView;
-        
-       
         
     }
     
@@ -288,7 +305,6 @@
         [self.theDocumentRequest startAsynchronous];
         
         // Update UI
-        
         [UIView animateWithDuration:0.4 
                          animations:^ (void) {
                              
@@ -343,12 +359,9 @@
                 self.lastRevID = [documentDict objectForKey:@"_rev"];
                 
                 // put strings for the rest of keys into a dictionary to display
-                
                 NSMutableDictionary *theFullDocument = [[NSMutableDictionary alloc] initWithCapacity:10];
                 
-                
                 // get array of keys to display
-                
                 NSArray *documentDisplayKeys = nil;
                 
                 if (self.currentDatabaseDefinition.keysToDisplay) {
@@ -370,13 +383,11 @@
                     
                 }
                 
-                // verification:
-                
+                // for verification:
                 NSLog(@"This will process keys for: %@", documentDisplayKeys);
                 
                 // create another array to hold new keys unpacked from geometry, properties, etc.
-                
-                // capacity = display keys - geometry + lat/long? best guess?
+                // capacity = display keys - geometry + latitude + longitude? best guess?
                 NSMutableArray *newDisplayKeys = [[NSMutableArray alloc] initWithCapacity:[documentDisplayKeys count] + 1]; 
                 
                 // Make a list of special cases of nested keys like geometry, properties, 
@@ -386,7 +397,7 @@
                     
                     if ([theKey isEqualToString:@"geometry"]) {
 
-                        // don't need to validate type, because if it wasn't valid, 
+                        // Don't need to validate type, because if it wasn't valid, 
                         // it wouldn't be in a geoquery result. True? Too risky?
                         
                         NSArray *coordinateArray = 
@@ -438,7 +449,6 @@
                 // reset value of pointDictionary and sortedRowNames
                 
                 self.pointDictionary = theFullDocument;
-                //self.sortedRowNames = documentDisplayKeys;
                 self.sortedRowNames = newDisplayKeys;
                 
                 [theFullDocument release];
@@ -463,7 +473,7 @@
             
             // update UI to say document fetch was not successful
             
-            NSLog(@"Unexpected result: retrieved document was not a dictionary.");
+            NSLog(@"Unexpected result: Retrieved document was not a dictionary.");
             
         }
     }
