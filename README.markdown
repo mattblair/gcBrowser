@@ -38,8 +38,8 @@ If these aren't an option, and you really want a peek now, I can make a few ad-h
 
 ## Known Bugs
 
-* Popover display on iPad is well-less than beautiful: It leaps in, doesn't quite point to the pin, overlaps the toolbar, etc. And the fetch button animation is awful.
-* Database name is not displayed anywhere on the map view, without going back to the database list. 
+* Popover display on iPad is well-less than beautiful: It leaps in, doesn't quite point to the pin, overlaps the toolbar, the fetch UI animation is clumsy, etc.
+* Database name is not displayed anywhere on the map view, without going back to the database list.
 
 ## Roadmap
 
@@ -125,7 +125,7 @@ For a public-writable database:
 ```
 ## Dependencies
 
-This project uses [json-framework](http://code.google.com/p/json-framework/) and [ASIHTTPRequest](http://allseeing-i.com/ASIHTTPRequest/), both of which are included in the project for convenience.
+This project uses [json-framework](http://code.google.com/p/json-framework/) and [ASIHTTPRequest](http://allseeing-i.com/ASIHTTPRequest/) and [MBProgressHUD](https://github.com/matej/MBProgressHUD), which are included in the project for convenience.
 
 ## Hat-Tips
 

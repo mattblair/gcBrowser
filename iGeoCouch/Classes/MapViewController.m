@@ -70,7 +70,7 @@
 
 
 @synthesize infoButton, refreshButton, locationButton, addButton, couchListButton, settingsButton;
-@synthesize theMapView, locationManager, locationReallyEnabled, pointsFoundInRegion, mapPointsRequest;
+@synthesize theMapView, locationManager, locationReallyEnabled, pointsFoundInRegion, mapPointsRequest, theHUD;
 @synthesize couchSourceList, currentCouchSourceIndex, currentDatabaseDefinition;
 
 // Core Data - can delete if not used
@@ -158,6 +158,8 @@
     self.couchListButton = nil;
     self.settingsButton = nil;
     
+    self.theHUD = nil;
+    
     self.couchSourceList = nil;
     
     self.theMapView = nil;
@@ -185,6 +187,8 @@
     [addButton release];
     [couchListButton release];
     [settingsButton release];
+    
+    [theHUD release];
     
     [theMapView release];
     [locationManager release];
@@ -434,6 +438,11 @@
 		[[self mapPointsRequest] setDelegate:self];
 		[[self mapPointsRequest] startAsynchronous];
 		
+        // Update UI
+        
+        self.theHUD = [MBProgressHUD showHUDAddedTo:self.theMapView animated:YES];      
+        self.theHUD.labelText = @"Requesting Points...";
+        self.theHUD.alpha = 0.8;
 		
 	} // end of if reachable by wifi or wwan
 	
@@ -630,6 +639,7 @@
 		
 	}
     
+    [self.theHUD hide:YES afterDelay:1.0];
     
     self.mapPointsRequest = nil;
 	
@@ -664,6 +674,8 @@
 		[alert release];
 	}
 	
+    [self.theHUD hide:YES afterDelay:1.0];
+    
     self.mapPointsRequest = nil;
     
 }
@@ -946,6 +958,12 @@
 		[[self mapPointsRequest] cancel];
 		
 		NSLog(@"Request cancelled by killRequest");
+        
+        if (self.theHUD) {
+            
+            self.theHUD = nil; // or does request failure handle this?
+            
+        }
 		
 	}
 	

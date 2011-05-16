@@ -38,6 +38,7 @@
 
 #import "CouchListViewController.h" // or just declare the protocol
 #import "GeoCouchDatabaseDefinition.h"
+#import "MBProgressHUD.h"
 
 @class ASIHTTPRequest;
 @class Reachability;
@@ -54,7 +55,8 @@
 	
 	// Manage requests and connection
 	ASIHTTPRequest *mapPointsRequest;
-    Reachability* internetReach;
+    Reachability *internetReach;
+    MBProgressHUD *theHUD;
 	
 	// Mapping and location
 	MKMapView *theMapView;
@@ -100,6 +102,7 @@
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 
 @property (retain) ASIHTTPRequest *mapPointsRequest;
+@property (nonatomic, retain) MBProgressHUD *theHUD;
 
 // to kill requests on Reachability failure
 - (void)killRequest;

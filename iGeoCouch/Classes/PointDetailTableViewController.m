@@ -41,7 +41,7 @@
 @implementation PointDetailTableViewController
 
 @synthesize currentDatabaseDefinition, theDocID, lastRevID, pointDictionary, sortedRowNames;
-@synthesize fetchDetailsOnViewWillAppear, theDocumentRequest, fetchView, fetchButton;
+@synthesize fetchDetailsOnViewWillAppear, theDocumentRequest, theHUD, fetchView;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -64,8 +64,9 @@
     [pointDictionary release]; 
     [sortedRowNames release];
     
+    [theHUD release];
+    
     [fetchView release];
-    [fetchButton release];
     
     [super dealloc];
 }
@@ -77,6 +78,7 @@
     
     // Release any cached data, images, etc that aren't in use.
     
+    self.theHUD = nil;
     self.fetchView = nil;
     
 }
@@ -290,12 +292,21 @@
        
     // Update UI
     
+    self.theHUD = [MBProgressHUD showHUDAddedTo:self.tableView animated:YES];
+    
+    self.theHUD.labelText = @"Fetching Details...";
+    self.theHUD.alpha = 0.8;
+    
     // one-shot -- they don't get to try again unless they come back to this view
     
     [UIView animateWithDuration:0.4 
                      animations:^ (void) {
                          
                          self.fetchView.frame = CGRectMake(0.0, 0.0, 320.0, 0.0);
+
+                         // I don't like the table dimming with the current cell design.
+                         // Try again once you've added custom cells.
+                         //self.tableView.alpha = 0.6;
                          
                      } completion:^(BOOL finished) {
                          
@@ -477,6 +488,19 @@
             }
          
             
+            [MBProgressHUD hideHUDForView:self.tableView animated:YES];
+            
+            // I don't like the alpha dimming with the current cell design
+            // try again once you've added custom cells
+            
+            /*
+            [UIView animateWithDuration:1.0 animations: ^(void) {
+               
+                self.tableView.alpha = 1.0;
+                
+            }];
+            */
+            
             // reload table
             
             [self.tableView reloadData];
@@ -503,6 +527,10 @@
 	NSLog(@"Document Request failed with response: %@", [request responseString]);
     
     // update UI to indicate failure
+    
+    self.theHUD.labelText = @"Details Unavailable";
+    
+    [self.theHUD hide:YES afterDelay:1.0];
     
     self.theDocumentRequest = nil;
     

@@ -115,14 +115,9 @@
             
             CouchListViewController *couchListVC = [[CouchListViewController alloc] initWithNibName:@"CouchListViewController" bundle:nil];
             
-            // pass the array loaded from the plist in super to be the datasource
-            couchListVC.couchSourceList = self.couchSourceList;
-            
             couchListVC.title = @"GeoCouch Data Sources";
             
             couchListVC.delegate = self;
-            
-            couchListVC.currentCouchSourceIndex = self.currentCouchSourceIndex;
             
             CGSize couchPopoverSize = CGSizeMake(320.0, 550.0);
             
@@ -136,6 +131,15 @@
             
             [couchPopover release];
         }
+        
+        
+        // update list and index in case these have been changed elsewhere
+        CouchListViewController *listVC = (CouchListViewController *)self.couchListPVC.contentViewController;
+        
+        // pass the array loaded from the plist in super to be the datasource
+        listVC.couchSourceList = self.couchSourceList;
+        
+        listVC.currentCouchSourceIndex = self.currentCouchSourceIndex;
         
         [self.couchListPVC presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
         
@@ -237,18 +241,7 @@
                 
                 PointDetailTableViewController *pointVC = [[PointDetailTableViewController alloc] initWithNibName:@"PointDetailTableViewController" bundle:nil];
                 
-                
-                // if you keep this approach, switch keys to constants, and explicitly alloc/init/release
-                NSDictionary *annotationDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                                                [selectedPoint title],@"title",
-                                                [selectedPoint subtitle],@"subtitle",
-                                                [[selectedPoint latitude] stringValue],@"latitude",
-                                                [[selectedPoint longitude] stringValue],@"longitude",
-                                                nil];
-                
-                pointVC.pointDictionary = annotationDict;
-                
-                CGSize mapPopoverSize = CGSizeMake(320.0, 280.0);
+                CGSize mapPopoverSize = CGSizeMake(320.0, 360.0);
                 
                 pointVC.contentSizeForViewInPopover = mapPopoverSize;
                 
@@ -262,7 +255,7 @@
                 
             }
             
-            // pass the point's information -- kind of ugly at the moment?
+            // pass the point's information
             
             PointDetailTableViewController *pointDetailVC = (PointDetailTableViewController *)[self.mapCalloutPVC contentViewController];
             
@@ -282,9 +275,13 @@
                         
             pointDetailVC.currentDatabaseDefinition = self.currentDatabaseDefinition;
             
-            // needs to be offest -- try x-10 and y+10 for starters
+            // MKAnnotationPin is 32 x 39, and we want to present from pinhead in top half
+            // Also, pin shaft and head are not centered because of the shadow
+            // It probably makes sense to use fixed values here rather than calculate
             
-            [self.mapCalloutPVC presentPopoverFromRect:view.bounds inView:view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+            CGRect pinRect = CGRectMake((view.frame.size.width / 2.0) - 12.0, (view.frame.size.height / 4.0) -7.0, 8.0, 12.0);
+            
+            [self.mapCalloutPVC presentPopoverFromRect:pinRect inView:view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
             
         }
         

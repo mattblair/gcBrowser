@@ -36,6 +36,7 @@
 #import <UIKit/UIKit.h>
 #import "ASIHTTPRequest.h"
 #import "GeoCouchDatabaseDefinition.h"
+#import "MBProgressHUD.h"
 
 /*
 NOTE: I called this one PointDetailTableViewController because
@@ -65,9 +66,10 @@ it makes sense to go that route in the future.
     BOOL fetchDetailsOnViewWillAppear; 
     
     ASIHTTPRequest *theDocumentRequest;
+    MBProgressHUD *theHUD;
     
     UIView *fetchView;
-    UIButton *fetchButton;  // ditch
+    
 }
 
 @property (nonatomic, retain) GeoCouchDatabaseDefinition *currentDatabaseDefinition;
@@ -79,9 +81,10 @@ it makes sense to go that route in the future.
 
 @property (nonatomic) BOOL fetchDetailsOnViewWillAppear;
 @property (nonatomic, retain) ASIHTTPRequest *theDocumentRequest;
+@property (nonatomic, retain) MBProgressHUD *theHUD;
 
 @property (nonatomic, retain) UIView *fetchView;
-@property (nonatomic, retain) UIButton *fetchButton;
+
 
 - (void)fetchFullDocument;
 - (void)killRequest;
