@@ -109,9 +109,6 @@
     // set the default order of the rows
     self.sortedRowNames = [NSArray arrayWithObjects:@"title",@"subtitle", @"latitude", @"longitude", nil];
     
-    // load currently available values
-    [self.tableView reloadData];
-    
     // start the process of fetching the rest of the doc, if needed
     if (fetchDetailsOnViewWillAppear) {
         
@@ -120,30 +117,54 @@
     }
     else {  // set up fetch UI -- subclass for iPhone to use nav bar or toolbar?
         
-        CGRect fetchFrame = CGRectMake(0.0, 0.0, 320.0, 64.0);
+        if (!self.fetchView) {
+            
+            CGRect fetchFrame = CGRectMake(0.0, 0.0, 320.0, 64.0);
+            
+            self.fetchView = [[UIView alloc] initWithFrame:fetchFrame];
+            
+            self.fetchView.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
+            
+            //should be localized
+            NSString *fetchText = [[NSString alloc] initWithString:@"Tap to Fetch Details..."];
+            
+            self.fetchView.accessibilityHint = @"Will download more details about this location.";
+            
+            self.fetchView.accessibilityLabel = fetchText;
+            
+            CGRect labelFrame = CGRectMake(40.0, 10.0, 240.0, 44.0);
+            
+            UILabel *fetchLabel = [[UILabel alloc] initWithFrame:labelFrame];
+            
+            fetchLabel.textColor = [UIColor whiteColor];
+            
+            fetchLabel.backgroundColor = [UIColor clearColor];
+            
+            fetchLabel.font = [UIFont systemFontOfSize:17.0];
+            
+            fetchLabel.textAlignment = UITextAlignmentCenter;
+            
+            fetchLabel.text = fetchText;
+            
+            [self.fetchView addSubview:fetchLabel];
+            
+            [fetchText release];
+            [fetchLabel release];
+            
+            UIGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fetchFullDocument)];
+            [self.fetchView addGestureRecognizer:recognizer];
+
+            [recognizer release];
+            
+        }
         
-        self.fetchView = [[UIView alloc] initWithFrame:fetchFrame];
-        
-        self.fetchView.backgroundColor = [UIColor lightGrayColor];
-        
-        CGRect buttonFrame = CGRectMake(80.0, 10.0, 160.0, 44.0);
-        
-        self.fetchButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        
-        self.fetchButton.frame = buttonFrame;
-        
-        [self.fetchButton setTitle:@"Fetch Details" forState:UIControlStateNormal];
-        [self.fetchButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-        
-        [self.fetchButton addTarget:self action:@selector(fetchFullDocument) forControlEvents:UIControlEventTouchUpInside];
-        
-        [self.tableView.tableFooterView setFrame:fetchFrame];
-        
-        [fetchView addSubview:self.fetchButton];
-        
+        self.fetchView.frame = CGRectMake(0.0, 0.0, 320.0, 64.0);        
         self.tableView.tableHeaderView = self.fetchView;
         
     }
+    
+    // load currently available values
+    [self.tableView reloadData];
     
 }
 
@@ -266,18 +287,22 @@
 #pragma mark - Requesting Data from Couch
 
 - (void)fetchFullDocument {
+       
+    // Update UI
     
     // one-shot -- they don't get to try again unless they come back to this view
     
-    self.fetchButton.enabled = NO;
+    [UIView animateWithDuration:0.4 
+                     animations:^ (void) {
+                         
+                         self.fetchView.frame = CGRectMake(0.0, 0.0, 320.0, 0.0);
+                         
+                     } completion:^(BOOL finished) {
+                         
+                         self.tableView.tableHeaderView = nil; // w/o nil here, it leaves empty space
+                         
+                     }];
     
-    // animate this out, and then set as nil on the call back
-    
-    [UIView animateWithDuration:0.4 animations:^ (void) {
-        
-        self.fetchButton.alpha = 0.0;
-        
-    }];
 
     // Check Reachability first
     
@@ -303,18 +328,6 @@
         [self.theDocumentRequest setDidFailSelector:@selector(documentRequestFailed:)];
                 
         [self.theDocumentRequest startAsynchronous];
-        
-        // Update UI
-        [UIView animateWithDuration:0.4 
-                         animations:^ (void) {
-                             
-                             self.tableView.tableHeaderView.frame = CGRectMake(0.0, 0.0, 0.0, 0.0);
-                             
-                         } completion:^(BOOL finished) {
-                             
-                             self.tableView.tableHeaderView = nil;
-                             
-                         }];
         
     }
     else {

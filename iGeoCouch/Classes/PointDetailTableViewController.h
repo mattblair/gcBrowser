@@ -67,7 +67,7 @@ it makes sense to go that route in the future.
     ASIHTTPRequest *theDocumentRequest;
     
     UIView *fetchView;
-    UIButton *fetchButton;
+    UIButton *fetchButton;  // ditch
 }
 
 @property (nonatomic, retain) GeoCouchDatabaseDefinition *currentDatabaseDefinition;
