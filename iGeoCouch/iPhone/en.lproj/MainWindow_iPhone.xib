@@ -18,6 +18,7 @@
 			<string>IBUICustomObject</string>
 			<string>IBUIToolbar</string>
 			<string>IBUIWindow</string>
+			<string>IBUIBarButtonItem</string>
 			<string>IBUINavigationBar</string>
 			<string>IBUINavigationItem</string>
 		</object>
@@ -52,6 +53,7 @@
 				<string key="NSFrameSize">{320, 480}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
+				<reference key="NSNextKeyView"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
 					<bytes key="NSRGB">MSAxIDEAA</bytes>
@@ -84,9 +86,12 @@
 					</object>
 				</object>
 				<object class="IBUIToolbar" key="IBUIToolbar" id="822929469">
-					<nil key="NSNextResponder"/>
+					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<string key="NSFrame">{{0, 436}, {320, 44}}</string>
+					<reference key="NSSuperview"/>
+					<reference key="NSWindow"/>
+					<reference key="NSNextKeyView"/>
 					<bool key="IBUIOpaque">NO</bool>
 					<bool key="IBUIClipsSubviews">YES</bool>
 					<int key="IBUIContentMode">4</int>
@@ -105,7 +110,13 @@
 					<object class="IBUIViewController" id="540867840">
 						<reference key="IBUIToolbarItems" ref="0"/>
 						<object class="IBUINavigationItem" key="IBUINavigationItem" id="286301902">
-							<string key="IBUITitle">gcBrowser</string>
+							<reference key="IBUINavigationBar"/>
+							<string key="IBUITitle">GeoCouch Browser</string>
+							<object class="IBUIBarButtonItem" key="IBUIBackBarButtonItem" id="390162947">
+								<string key="IBUITitle">Map</string>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<int key="IBUIStyle">1</int>
+							</object>
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						</object>
 						<reference key="IBUIParentViewController" ref="490101796"/>
@@ -212,6 +223,10 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">12</int>
 						<reference key="object" ref="286301902"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="390162947"/>
+						</object>
 						<reference key="parent" ref="540867840"/>
 						<string key="objectName">Navigation Item - iGeoCouch</string>
 					</object>
@@ -219,6 +234,11 @@
 						<int key="objectID">13</int>
 						<reference key="object" ref="822929469"/>
 						<reference key="parent" ref="490101796"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">21</int>
+						<reference key="object" ref="390162947"/>
+						<reference key="parent" ref="286301902"/>
 					</object>
 				</object>
 			</object>
@@ -271,7 +291,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">20</int>
+			<int key="maxID">21</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

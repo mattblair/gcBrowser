@@ -197,7 +197,7 @@
 }
 
 
-#pragma mark - MapView Delegate
+#pragma mark - MapView Delegate aka Push Detail View
 
 // overrides super
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
@@ -233,6 +233,8 @@
         pointVC.pointDictionary = annotationDict;
         
         pointVC.fetchDetailsOnViewWillAppear = YES;  // FUTURE: NO if include_docs was used in geoquery
+        
+        pointVC.title = self.currentDatabaseDefinition.name;
         
         [self.navigationController pushViewController:pointVC animated:YES];
         
